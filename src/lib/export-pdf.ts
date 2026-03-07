@@ -1,0 +1,121 @@
+import { Trip } from "./types";
+import { formatCurrency, formatDate, getTotalSpent, getSpendingByCategory } from "./utils";
+import { EXPENSE_CATEGORIES } from "./constants";
+
+export async function exportTripToPDF(trip: Trip): Promise<void> {
+  const { jsPDF } = await import("jspdf");
+  const { default: html2canvas } = await import("html2canvas");
+
+  // Create a hidden print container
+  const container = document.createElement("div");
+  container.style.cssText = "position:fixed;left:-9999px;top:0;width:800px;background:white;padding:40px;font-family:sans-serif;color:#1E293B;";
+
+  const totalSpent = getTotalSpent(trip.expenses);
+  const remaining = trip.budget - totalSpent;
+  const categorySpending = getSpendingByCategory(trip.expenses);
+
+  container.innerHTML = `
+    <div style="margin-bottom:32px;border-bottom:3px solid #FF6B35;padding-bottom:16px;">
+      <h1 style="font-size:28px;font-weight:700;color:#FF6B35;margin:0 0 8px 0;">${trip.name}</h1>
+      <p style="color:#64748B;margin:0;">${trip.destination} &bull; ${formatDate(trip.startDate)} – ${formatDate(trip.endDate)}</p>
+      <p style="color:#64748B;margin:4px 0 0 0;">Report generated: ${formatDate(new Date().toISOString())}</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:32px;">
+      <div style="background:#F8FAFC;border-radius:12px;padding:16px;">
+        <div style="font-size:12px;color:#64748B;margin-bottom:4px;">Total Budget</div>
+        <div style="font-size:22px;font-weight:700;">${formatCurrency(trip.budget, trip.baseCurrency)}</div>
+      </div>
+      <div style="background:#F8FAFC;border-radius:12px;padding:16px;">
+        <div style="font-size:12px;color:#64748B;margin-bottom:4px;">Total Spent</div>
+        <div style="font-size:22px;font-weight:700;color:${remaining < 0 ? "#EF4444" : "#2DD4BF"};">${formatCurrency(totalSpent, trip.baseCurrency)}</div>
+      </div>
+      <div style="background:#F8FAFC;border-radius:12px;padding:16px;">
+        <div style="font-size:12px;color:#64748B;margin-bottom:4px;">Remaining</div>
+        <div style="font-size:22px;font-weight:700;color:${remaining < 0 ? "#EF4444" : "#2DD4BF"};">${formatCurrency(Math.abs(remaining), trip.baseCurrency)}${remaining < 0 ? " over" : ""}</div>
+      </div>
+    </div>
+
+    <h2 style="font-size:18px;font-weight:600;margin:0 0 16px 0;">Spending by Category</h2>
+    <div style="margin-bottom:32px;">
+      ${EXPENSE_CATEGORIES.filter(c => categorySpending[c.value])
+        .map(c => {
+          const amount = categorySpending[c.value] ?? 0;
+          const pct = trip.budget > 0 ? (amount / trip.budget) * 100 : 0;
+          return `
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+              <span style="width:100px;font-size:13px;">${c.emoji} ${c.label}</span>
+              <div style="flex:1;background:#E2E8F0;border-radius:4px;height:10px;">
+                <div style="width:${Math.min(100, pct)}%;background:#FF6B35;border-radius:4px;height:10px;"></div>
+              </div>
+              <span style="width:100px;text-align:right;font-size:13px;font-weight:600;">${formatCurrency(amount, trip.baseCurrency)}</span>
+            </div>`;
+        }).join("")}
+    </div>
+
+    <h2 style="font-size:18px;font-weight:600;margin:0 0 16px 0;">Expense List</h2>
+    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <thead>
+        <tr style="background:#FF6B35;color:white;">
+          <th style="padding:10px;text-align:left;border-radius:4px 0 0 0;">Date</th>
+          <th style="padding:10px;text-align:left;">Description</th>
+          <th style="padding:10px;text-align:left;">Category</th>
+          <th style="padding:10px;text-align:left;">Paid By</th>
+          <th style="padding:10px;text-align:right;border-radius:0 4px 0 0;">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${trip.expenses
+          .sort((a, b) => b.date.localeCompare(a.date))
+          .map((e, i) => {
+            const cat = EXPENSE_CATEGORIES.find(c => c.value === e.category);
+            const traveler = trip.travelers.find(t => t.id === e.paidBy);
+            return `
+              <tr style="background:${i % 2 === 0 ? "white" : "#F8FAFC"};">
+                <td style="padding:8px 10px;">${formatDate(e.date, "MMM d")}</td>
+                <td style="padding:8px 10px;">${e.description}</td>
+                <td style="padding:8px 10px;">${cat?.emoji} ${cat?.label ?? e.category}</td>
+                <td style="padding:8px 10px;">${traveler?.name ?? "Unknown"}</td>
+                <td style="padding:8px 10px;text-align:right;font-weight:600;">${formatCurrency(e.amount, e.currency)}</td>
+              </tr>`;
+          }).join("")}
+      </tbody>
+    </table>
+
+    <div style="margin-top:40px;padding-top:16px;border-top:1px solid #E2E8F0;text-align:center;color:#94A3B8;font-size:12px;">
+      Generated by TripBudget &bull; tripbudget.app
+    </div>
+  `;
+
+  document.body.appendChild(container);
+
+  try {
+    const canvas = await html2canvas(container, { scale: 2, useCORS: true });
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+    const imgWidth = canvas.width;
+    const imgHeight = canvas.height;
+    const ratio = pdfWidth / imgWidth;
+    const scaledHeight = imgHeight * ratio;
+
+    let position = 0;
+    let remainingHeight = scaledHeight;
+
+    while (remainingHeight > 0) {
+      pdf.addImage(imgData, "PNG", 0, position, pdfWidth, scaledHeight);
+      remainingHeight -= pdfHeight;
+      if (remainingHeight > 0) {
+        position -= pdfHeight;
+        pdf.addPage();
+      }
+    }
+
+    const fileName = `${trip.name.replace(/[^a-z0-9]/gi, "-")}-BudgetReport.pdf`;
+    pdf.save(fileName);
+  } finally {
+    document.body.removeChild(container);
+  }
+}

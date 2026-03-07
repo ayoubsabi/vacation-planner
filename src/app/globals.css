@@ -1,26 +1,54 @@
 @import "tailwindcss";
+@import "../styles/animations.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #FF6B35;
+  --primary-dark: #e55a25;
+  --secondary: #004E89;
+  --accent: #F4B860;
+  --success: #2DD4BF;
+  --warning: #FCD34D;
+  --danger: #EF4444;
+  --background: #F8FAFC;
+  --surface: #FFFFFF;
+  --text-primary: #1E293B;
+  --text-secondary: #64748B;
+  --border: #E2E8F0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--background);
+}
+
+/* Budget progress bar */
+.budget-bar-fill {
+  background: linear-gradient(90deg, #2DD4BF 0%, #2DD4BF 60%, #FCD34D 75%, #EF4444 100%);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* Monospace for numbers */
+.mono {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+}
+
+/* Safe area padding for iOS */
+.safe-bottom {
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
 }

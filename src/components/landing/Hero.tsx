@@ -1,0 +1,63 @@
+import Link from "next/link";
+import { Button } from "@/components/common/Button";
+import { MapPin, TrendingUp, Users } from "lucide-react";
+
+export function Hero() {
+  return (
+    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--primary)] via-[#ff8a5b] to-[var(--accent)] text-white px-4 pt-16 pb-24">
+      {/* Background decoration */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-8 right-8 w-48 h-48 rounded-full bg-white blur-3xl" />
+        <div className="absolute bottom-8 left-4 w-32 h-32 rounded-full bg-white blur-2xl" />
+      </div>
+
+      <div className="relative max-w-2xl mx-auto text-center">
+        <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm rounded-full px-4 py-1.5 text-sm font-medium mb-6">
+          <span>✈️</span>
+          <span>No login required — 100% free</span>
+        </div>
+
+        <h1 className="text-4xl sm:text-5xl font-bold leading-tight mb-4">
+          Plan trips,{" "}
+          <span className="text-[var(--secondary)] bg-white/20 px-2 rounded-lg">
+            track spending
+          </span>
+          {" "}with friends
+        </h1>
+
+        <p className="text-lg text-white/90 mb-8 max-w-md mx-auto">
+          Budget smarter, split expenses fairly, and visualize your travel spending — all offline, no account needed.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <Link href="/trip/new">
+            <Button size="lg" className="bg-white !text-[var(--primary)] hover:bg-white/90 w-full sm:w-auto shadow-lg">
+              Start Planning ✈️
+            </Button>
+          </Link>
+          <Link href="#how-it-works">
+            <Button size="lg" variant="ghost" className="!text-white hover:bg-white/20 w-full sm:w-auto border border-white/30">
+              How it works
+            </Button>
+          </Link>
+        </div>
+
+        {/* Stats */}
+        <div className="flex justify-center gap-8 mt-12 text-sm">
+          <div className="flex items-center gap-1.5">
+            <MapPin size={16} />
+            <span>Any destination</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <Users size={16} />
+            <span>Group splits</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <TrendingUp size={16} />
+            <span>Live charts</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
