@@ -1,4 +1,13 @@
+import type { Metadata } from "next";
 import { BottomNavigation } from "@/components/trip/BottomNavigation";
+
+// Trip data lives in IndexedDB (client-only) — cannot generate per-trip titles server-side.
+// These pages are disallowed in robots.ts; robots meta reinforces that.
+export const metadata: Metadata = {
+  title: "Trip Dashboard",
+  description: "Manage your vacation budget, track expenses, and split costs with your group.",
+  robots: { index: false, follow: false },
+};
 
 interface TripLayoutProps {
   children: React.ReactNode;
