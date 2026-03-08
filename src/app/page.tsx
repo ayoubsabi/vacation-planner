@@ -13,27 +13,31 @@ export default function LandingPage() {
     <main className="min-h-screen bg-[var(--background)]">
       <LandingJsonLd />
 
-      <nav className="flex items-center justify-between px-4 h-14 bg-white/80 backdrop-blur-sm border-b border-[var(--border)] sticky top-0 z-40">
-        <span className="font-bold text-[var(--primary)] text-lg">{APP_NAME}</span>
-        <div className="flex items-center gap-5">
-          <Link
-            href="/blog"
-            className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors hidden sm:inline"
-          >
-            Blog
+      <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-[var(--border)]">
+        <div className="flex items-center justify-between px-6 h-14 max-w-5xl mx-auto">
+          <Link href="/" className="font-bold text-[var(--primary)] text-base tracking-tight">
+            {APP_NAME}
           </Link>
-          <Link
-            href="/templates"
-            className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors hidden sm:inline"
-          >
-            Templates
-          </Link>
-          <Link
-            href="/trip/new"
-            className="text-sm font-semibold text-[var(--primary)] hover:underline"
-          >
-            + New Trip
-          </Link>
+          <div className="flex items-center gap-6">
+            <Link
+              href="/blog"
+              className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors hidden sm:inline"
+            >
+              Blog
+            </Link>
+            <Link
+              href="/templates"
+              className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors hidden sm:inline"
+            >
+              Templates
+            </Link>
+            <Link
+              href="/trip/new"
+              className="text-sm font-semibold bg-[var(--primary)] text-white px-4 py-1.5 rounded-lg hover:opacity-90 transition-opacity"
+            >
+              New Trip
+            </Link>
+          </div>
         </div>
       </nav>
 
@@ -44,59 +48,36 @@ export default function LandingPage() {
       <UseCases />
       <FAQ />
 
-      <footer className="border-t border-[var(--border)] py-10 px-4">
-        <div className="max-w-2xl mx-auto grid grid-cols-2 sm:grid-cols-3 gap-8 mb-8 text-sm">
-          <div>
-            <p className="font-semibold text-[var(--text-primary)] mb-3">Product</p>
-            <ul className="space-y-2 text-[var(--text-secondary)]">
-              <li>
-                <Link href="/trip/new" className="hover:text-[var(--text-primary)] hover:underline">
-                  New Trip
-                </Link>
-              </li>
-              <li>
-                <Link href="/templates" className="hover:text-[var(--text-primary)] hover:underline">
-                  Trip Templates
-                </Link>
-              </li>
-            </ul>
+      <footer className="border-t border-[var(--border)] py-6 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4">
+            <div className="flex items-center gap-2 text-xs text-[var(--text-secondary)]">
+              <Link href="/" className="font-bold text-[var(--primary)] text-sm">
+                {APP_NAME}
+              </Link>
+              <span>·</span>
+              <span>Free</span>
+              <span>·</span>
+              <span>Offline</span>
+              <span>·</span>
+              <span>No account needed</span>
+            </div>
+            <nav className="flex items-center gap-5 text-xs text-[var(--text-secondary)]">
+              <Link href="/trip/new" className="hover:text-[var(--text-primary)] transition-colors">
+                New Trip
+              </Link>
+              <Link href="/templates" className="hover:text-[var(--text-primary)] transition-colors">
+                Templates
+              </Link>
+              <Link href="/blog" className="hover:text-[var(--text-primary)] transition-colors">
+                Blog
+              </Link>
+            </nav>
           </div>
-          <div>
-            <p className="font-semibold text-[var(--text-primary)] mb-3">Learn</p>
-            <ul className="space-y-2 text-[var(--text-secondary)]">
-              <li>
-                <Link href="/blog" className="hover:text-[var(--text-primary)] hover:underline">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog/how-to-budget-a-vacation"
-                  className="hover:text-[var(--text-primary)] hover:underline"
-                >
-                  Vacation Budget Guide
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog/split-expenses-with-friends"
-                  className="hover:text-[var(--text-primary)] hover:underline"
-                >
-                  Splitting Expenses
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="col-span-2 sm:col-span-1">
-            <p className="font-semibold text-[var(--text-primary)] mb-3">{APP_NAME}</p>
-            <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
-              Free vacation budget planner. Data stays on your device. No account needed.
-            </p>
+          <div className="border-t border-[var(--border)] pt-4 text-center text-xs text-[var(--text-secondary)]">
+            Data stays on your device · Built for travelers
           </div>
         </div>
-        <p className="text-center text-xs text-[var(--text-secondary)]">
-          Built with ❤️ for travelers · {APP_NAME}
-        </p>
       </footer>
     </main>
   );

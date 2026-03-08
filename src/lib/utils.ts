@@ -13,7 +13,7 @@ export function formatCurrency(amount: number, currencyCode: string = "USD"): st
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(amount);
-  return `${symbol}${formatted}`;
+  return `${formatted} ${symbol}`;
 }
 
 export function formatDate(dateString: string, fmt: string = "MMM d, yyyy"): string {

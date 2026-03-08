@@ -63,16 +63,18 @@ const SLUG_EMOJIS: Record<string, string> = {
 export default function TemplatesIndexPage() {
   return (
     <main className="min-h-screen bg-[var(--background)]">
-      <nav className="flex items-center justify-between px-4 h-14 bg-white/80 backdrop-blur-sm border-b border-[var(--border)] sticky top-0 z-40">
-        <Link href="/" className="font-bold text-[var(--primary)] text-lg">
-          TripBudget
-        </Link>
-        <Link
-          href="/trip/new"
-          className="text-sm font-semibold text-[var(--primary)] hover:underline"
-        >
-          + New Trip
-        </Link>
+      <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-[var(--border)]">
+        <div className="flex items-center justify-between px-6 h-14 max-w-2xl mx-auto">
+          <Link href="/" className="font-bold text-[var(--primary)] text-base tracking-tight">
+            TripBudget
+          </Link>
+          <Link
+            href="/trip/new"
+            className="text-sm font-semibold bg-[var(--primary)] text-white px-4 py-1.5 rounded-lg hover:opacity-90 transition-opacity"
+          >
+            New Trip
+          </Link>
+        </div>
       </nav>
 
       <script

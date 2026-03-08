@@ -91,25 +91,23 @@ export default async function TemplateDetailPage({
   return (
     <main className="min-h-screen bg-[var(--background)]">
       {/* Header — matches the trip page Header component style */}
-      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-sm border-b border-[var(--border)]">
-        <div className="flex items-center gap-3 px-4 h-14 max-w-2xl mx-auto">
+      <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-[var(--border)]">
+        <div className="flex items-center gap-3 px-6 h-14 max-w-2xl mx-auto">
           <Link
             href="/templates"
-            className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors -ml-1"
+            className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors -ml-2"
             aria-label="Back to templates"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </Link>
-          <div className="flex-1 min-w-0">
-            <p className="font-bold text-[var(--text-primary)] truncate">{trip.name}</p>
-          </div>
+          <p className="flex-1 font-bold text-[var(--text-primary)] truncate">{trip.name}</p>
           <Link
             href="/trip/new"
-            className="text-sm font-semibold text-[var(--primary)] hover:underline shrink-0"
+            className="text-sm font-semibold bg-[var(--primary)] text-white px-4 py-1.5 rounded-lg hover:opacity-90 transition-opacity shrink-0"
           >
-            + New Trip
+            New Trip
           </Link>
         </div>
       </header>

@@ -36,11 +36,11 @@ const jsonLd = {
 export default function OfflineTravelAppsArticle() {
   return (
     <main className="min-h-screen bg-[var(--background)]">
-      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-sm border-b border-[var(--border)]">
-        <div className="flex items-center gap-3 px-4 h-14 max-w-2xl mx-auto">
+      <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-[var(--border)]">
+        <div className="flex items-center gap-3 px-6 h-14 max-w-2xl mx-auto">
           <Link
             href="/blog"
-            className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors -ml-1"
+            className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors -ml-2"
             aria-label="Back to blog"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -52,9 +52,9 @@ export default function OfflineTravelAppsArticle() {
           </p>
           <Link
             href="/trip/new"
-            className="text-sm font-semibold text-[var(--primary)] hover:underline shrink-0"
+            className="text-sm font-semibold bg-[var(--primary)] text-white px-4 py-1.5 rounded-lg hover:opacity-90 transition-opacity shrink-0"
           >
-            + New Trip
+            New Trip
           </Link>
         </div>
       </header>

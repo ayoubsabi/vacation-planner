@@ -42,18 +42,16 @@ const articles = [
 export default function BlogIndexPage() {
   return (
     <main className="min-h-screen bg-[var(--background)]">
-      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-sm border-b border-[var(--border)]">
-        <div className="flex items-center gap-3 px-4 h-14 max-w-2xl mx-auto">
-          <div className="flex-1 min-w-0">
-            <Link href="/" className="font-bold text-[var(--primary)] text-lg tracking-tight">
-              {APP_NAME}
-            </Link>
-          </div>
+      <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-[var(--border)]">
+        <div className="flex items-center justify-between gap-6 px-6 h-14 max-w-2xl mx-auto">
+          <Link href="/" className="font-bold text-[var(--primary)] text-base tracking-tight">
+            {APP_NAME}
+          </Link>
           <Link
             href="/trip/new"
-            className="text-sm font-semibold text-[var(--primary)] hover:underline shrink-0"
+            className="text-sm font-semibold bg-[var(--primary)] text-white px-4 py-1.5 rounded-lg hover:opacity-90 transition-opacity shrink-0"
           >
-            + New Trip
+            New Trip
           </Link>
         </div>
       </header>
