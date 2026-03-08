@@ -75,7 +75,7 @@ export default function LandingPage() {
             </nav>
           </div>
           <div className="border-t border-[var(--border)] pt-4 text-center text-xs text-[var(--text-secondary)]">
-            Data stays on your device · Built for travelers
+            Data stays on your device · Made with ❤️ by travelers for travelers.
           </div>
         </div>
       </footer>

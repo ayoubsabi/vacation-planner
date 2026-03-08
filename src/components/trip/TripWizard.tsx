@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/common/Input";
+import { LocationAutocomplete } from "@/components/common/LocationAutocomplete";
 import { Button } from "@/components/common/Button";
 import { Select } from "@/components/common/Select";
 import { useTripStore } from "@/store/tripStore";
@@ -27,7 +28,8 @@ export function TripWizard() {
 
   // Step 1
   const [destination, setDestination] = useState("");
-  const [destinationSuggestions, setDestinationSuggestions] = useState<typeof DESTINATION_SUGGESTIONS>([]);
+  const [destinationLat, setDestinationLat] = useState<number | undefined>(undefined);
+  const [destinationLng, setDestinationLng] = useState<number | undefined>(undefined);
   const [currency, setCurrency] = useState("USD");
   const [tripName, setTripName] = useState("");
 
@@ -46,26 +48,6 @@ export function TripWizard() {
   ]);
 
   const [errors, setErrors] = useState<Record<string, string>>({});
-
-  // Destination autocomplete
-  function handleDestinationChange(val: string) {
-    setDestination(val);
-    if (val.length > 1) {
-      const matches = DESTINATION_SUGGESTIONS.filter((d) =>
-        d.name.toLowerCase().includes(val.toLowerCase())
-      );
-      setDestinationSuggestions(matches.slice(0, 5));
-    } else {
-      setDestinationSuggestions([]);
-    }
-  }
-
-  function selectDestination(dest: (typeof DESTINATION_SUGGESTIONS)[0]) {
-    setDestination(dest.name);
-    setCurrency(dest.currency);
-    if (!tripName) setTripName(`Trip to ${dest.name.split(",")[0]}`);
-    setDestinationSuggestions([]);
-  }
 
   // Duration & daily budget
   const duration = getTripDuration(startDate, endDate);
@@ -120,6 +102,8 @@ export function TripWizard() {
       const trip = await addTrip({
         name: tripName,
         destination,
+        destinationLat,
+        destinationLng,
         startDate,
         endDate,
         budget: parseFloat(budget),
@@ -188,33 +172,27 @@ export function TripWizard() {
                 </p>
               </div>
 
-              <div className="relative">
-                <Input
-                  label="Destination"
-                  placeholder="e.g. Paris, France"
-                  value={destination}
-                  onChange={(e) => handleDestinationChange(e.target.value)}
-                  error={errors.destination}
-                  autoFocus
-                />
-                {destinationSuggestions.length > 0 && (
-                  <div className="absolute top-full left-0 right-0 bg-white border border-[var(--border)] rounded-xl shadow-lg z-10 mt-1 overflow-hidden">
-                    {destinationSuggestions.map((d) => (
-                      <button
-                        key={d.name}
-                        className="w-full text-left px-4 py-3 hover:bg-slate-50 text-sm flex items-center justify-between transition-colors"
-                        onClick={() => selectDestination(d)}
-                        type="button"
-                      >
-                        <span>{d.name}</span>
-                        <span className="text-xs text-[var(--text-secondary)] bg-slate-100 px-2 py-0.5 rounded">
-                          {d.currency}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
+              <LocationAutocomplete
+                label="Destination"
+                value={destination}
+                onChange={(val) => {
+                  setDestination(val);
+                  setDestinationLat(undefined);
+                  setDestinationLng(undefined);
+                }}
+                onSelect={(sel) => {
+                  setDestination(sel.displayLabel);
+                  setDestinationLat(sel.lat);
+                  setDestinationLng(sel.lng);
+                  const match = DESTINATION_SUGGESTIONS.find((d) =>
+                    d.name.toLowerCase().startsWith(sel.cityName.toLowerCase())
+                  );
+                  if (match) setCurrency(match.currency);
+                  if (!tripName) setTripName(`Trip to ${sel.cityName}`);
+                }}
+                error={errors.destination}
+                autoFocus
+              />
 
               <Input
                 label="Trip Name"
