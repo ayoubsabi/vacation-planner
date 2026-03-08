@@ -7,7 +7,7 @@ import { Button } from "@/components/common/Button";
 import { useTripStore } from "@/store/tripStore";
 import { useUIStore } from "@/store/uiStore";
 import { Trip, ExpenseCategory } from "@/lib/types";
-import { EXPENSE_CATEGORIES, CURRENCIES } from "@/lib/constants";
+import { EXPENSE_CATEGORIES } from "@/lib/constants";
 import { isoDateToday, formatCurrency } from "@/lib/utils";
 
 interface AddExpenseModalProps {
@@ -16,10 +16,9 @@ interface AddExpenseModalProps {
   trip: Trip;
 }
 
-const defaultForm = (tripCurrency: string, today: string) => ({
+const defaultForm = (today: string) => ({
   description: "",
   amount: "",
-  currency: tripCurrency,
   category: "food" as ExpenseCategory,
   date: today,
   paidBy: "",
@@ -33,7 +32,7 @@ export function AddExpenseModal({ isOpen, onClose, trip }: AddExpenseModalProps)
   const editingExpenseId = useUIStore((s) => s.editingExpenseId);
 
   const today = isoDateToday();
-  const [form, setForm] = useState(defaultForm(trip.baseCurrency, today));
+  const [form, setForm] = useState(defaultForm(today));
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
 
@@ -45,7 +44,6 @@ export function AddExpenseModal({ isOpen, onClose, trip }: AddExpenseModalProps)
         setForm({
           description: expense.description,
           amount: String(expense.amount),
-          currency: expense.currency,
           category: expense.category,
           date: expense.date,
           paidBy: expense.paidBy,
@@ -55,7 +53,7 @@ export function AddExpenseModal({ isOpen, onClose, trip }: AddExpenseModalProps)
       }
     } else {
       setForm({
-        ...defaultForm(trip.baseCurrency, today),
+        ...defaultForm(today),
         paidBy: trip.travelers[0]?.id ?? "",
       });
     }
@@ -78,7 +76,7 @@ export function AddExpenseModal({ isOpen, onClose, trip }: AddExpenseModalProps)
       const expenseData = {
         description: form.description.trim(),
         amount: parseFloat(form.amount),
-        currency: form.currency,
+        currency: trip.baseCurrency,
         category: form.category,
         date: form.date,
         paidBy: form.paidBy,
@@ -115,11 +113,6 @@ export function AddExpenseModal({ isOpen, onClose, trip }: AddExpenseModalProps)
     label: `${c.emoji} ${c.label}`,
   }));
 
-  const currencyOptions = CURRENCIES.map((c) => ({
-    value: c.code,
-    label: `${c.code} — ${c.name}`,
-  }));
-
   const travelerOptions = trip.travelers.map((t) => ({
     value: t.id,
     label: t.name,
@@ -141,24 +134,16 @@ export function AddExpenseModal({ isOpen, onClose, trip }: AddExpenseModalProps)
           autoFocus
         />
 
-        <div className="grid grid-cols-2 gap-3">
-          <Input
-            label="Amount"
-            type="number"
-            placeholder="0.00"
-            value={form.amount}
-            onChange={(e) => setForm((f) => ({ ...f, amount: e.target.value }))}
-            error={errors.amount}
-            min="0.01"
-            step="0.01"
-          />
-          <Select
-            label="Currency"
-            value={form.currency}
-            onChange={(e) => setForm((f) => ({ ...f, currency: e.target.value }))}
-            options={currencyOptions}
-          />
-        </div>
+        <Input
+          label="Amount"
+          type="number"
+          placeholder="0.00"
+          value={form.amount}
+          onChange={(e) => setForm((f) => ({ ...f, amount: e.target.value }))}
+          error={errors.amount}
+          min="0.01"
+          step="0.01"
+        />
 
         <div className="grid grid-cols-2 gap-3">
           <Select
@@ -212,7 +197,7 @@ export function AddExpenseModal({ isOpen, onClose, trip }: AddExpenseModalProps)
               <p className="text-xs text-[var(--text-secondary)] mt-2 bg-slate-50 rounded-lg px-3 py-2">
                 Each person pays:{" "}
                 <span className="font-bold text-[var(--primary)]">
-                  {formatCurrency(perPerson, form.currency)}
+                  {formatCurrency(perPerson, trip.baseCurrency)}
                 </span>
               </p>
             )}
