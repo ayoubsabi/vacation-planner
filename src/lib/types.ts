@@ -39,6 +39,7 @@ export interface Trip {
   baseCurrency: string;
   travelers: Traveler[];
   expenses: Expense[];
+  places?: import("@/lib/places").PlaceResult[];
   createdAt: string;
   updatedAt: string;
   archived?: boolean;

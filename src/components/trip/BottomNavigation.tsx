@@ -1,16 +1,17 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, BarChart2, GitFork, Settings } from "lucide-react";
+import { Home, BarChart2, GitFork, MapPin, Settings } from "lucide-react";
 
 interface BottomNavigationProps {
   tripId: string;
 }
 
 const tabs = [
-  { label: "Dashboard", icon: LayoutDashboard, href: "" },
-  { label: "Charts", icon: BarChart2, href: "/charts" },
-  { label: "Splitter", icon: GitFork, href: "/split" },
+  { label: "Home",     icon: Home,     href: ""        },
+  { label: "Charts",   icon: BarChart2, href: "/charts" },
+  { label: "Split",    icon: GitFork,  href: "/split"  },
+  { label: "Places",   icon: MapPin,   href: "/places" },
   { label: "Settings", icon: Settings, href: "/settings" },
 ];
 
@@ -29,14 +30,14 @@ export function BottomNavigation({ tripId }: BottomNavigationProps) {
             <Link
               key={label}
               href={fullPath}
-              className={`flex-1 flex flex-col items-center gap-0.5 py-2.5 transition-colors min-h-[56px] ${
+              className={`flex-1 flex flex-col items-center gap-0.5 py-2 transition-colors min-h-[56px] ${
                 isActive
                   ? "text-[var(--primary)]"
                   : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
               }`}
               aria-current={isActive ? "page" : undefined}
             >
-              <Icon size={20} strokeWidth={isActive ? 2.5 : 2} />
+              <Icon size={18} strokeWidth={isActive ? 2.5 : 2} />
               <span className="text-[10px] font-medium">{label}</span>
               {isActive && (
                 <span className="absolute bottom-0 w-6 h-0.5 bg-[var(--primary)] rounded-t-full" />
