@@ -4,25 +4,29 @@ const features = [
   {
     icon: <Users size={24} />,
     title: "Smart Expense Splitting",
-    description: "Add travelers and split any expense. We calculate who owes who automatically.",
+    description:
+      "Add travelers and log who paid for what. Our debt-minimization algorithm calculates the fewest transfers needed to settle all balances — no manual maths, no spreadsheets.",
     color: "bg-orange-50 text-[var(--primary)]",
   },
   {
     icon: <WifiOff size={24} />,
     title: "Works Offline",
-    description: "All data saved on your device. Plan your trip even without internet.",
+    description:
+      "TripBudget is a Progressive Web App (PWA). A Service Worker caches the app on first load, and all data is stored in IndexedDB on your device. Add expenses anywhere — no Wi-Fi required.",
     color: "bg-blue-50 text-[var(--secondary)]",
   },
   {
     icon: <BarChart2 size={24} />,
     title: "Visual Charts",
-    description: "See spending by category, daily trends, and per-person breakdowns.",
+    description:
+      "Understand your spending at a glance with a category pie chart, cumulative daily spending line chart, and a per-person bar chart. Spot overspending before it becomes a problem.",
     color: "bg-teal-50 text-[var(--success)]",
   },
   {
     icon: <Share2 size={24} />,
     title: "Easy Sharing",
-    description: "Share your trip with friends via link or QR code. Export a PDF report.",
+    description:
+      "Share a read-only trip link or QR code so the whole group can see the budget. When it's over, export a one-click PDF expense report to keep for your records.",
     color: "bg-yellow-50 text-amber-600",
   },
 ];
