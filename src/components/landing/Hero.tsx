@@ -4,20 +4,20 @@ import { MapPin, TrendingUp, Users } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--primary)] via-[#ff8a5b] to-[var(--accent)] text-white px-4 pt-16 pb-24">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--primary)] via-[#ff8a5b] to-[var(--accent)] text-white px-4 pt-10 sm:pt-16 pb-20 sm:pb-24">
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-8 right-8 w-48 h-48 rounded-full bg-white blur-3xl" />
-        <div className="absolute bottom-8 left-4 w-32 h-32 rounded-full bg-white blur-2xl" />
+        <div className="absolute top-8 right-8 w-24 h-24 sm:w-48 sm:h-48 rounded-full bg-white blur-3xl" />
+        <div className="absolute bottom-8 left-4 w-16 h-16 sm:w-32 sm:h-32 rounded-full bg-white blur-2xl" />
       </div>
 
       <div className="relative max-w-2xl mx-auto text-center">
-        <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm rounded-full px-4 py-1.5 text-sm font-medium mb-6">
+        <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 sm:px-4 sm:py-1.5 text-xs sm:text-sm font-medium mb-6">
           <span>✈️</span>
           <span>No login required — 100% free</span>
         </div>
 
-        <h1 className="text-4xl sm:text-5xl font-bold leading-tight mb-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
           Plan trips,{" "}
           <span className="text-[var(--secondary)] bg-white/20 px-2 rounded-lg">
             track spending
@@ -25,7 +25,7 @@ export function Hero() {
           {" "}with friends
         </h1>
 
-        <p className="text-lg text-white/90 mb-8 max-w-md mx-auto">
+        <p className="text-lg text-white/90 mb-6 sm:mb-8 max-w-md mx-auto">
           Budget smarter, split expenses fairly, and visualize your travel spending — all offline, no account needed.
         </p>
 
@@ -43,7 +43,7 @@ export function Hero() {
         </div>
 
         {/* Stats */}
-        <div className="flex justify-center gap-8 mt-12 text-sm">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mt-8 sm:mt-12 text-sm">
           <div className="flex items-center gap-1.5">
             <MapPin size={16} />
             <span>Any destination</span>
