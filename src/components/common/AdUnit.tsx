@@ -17,13 +17,17 @@ interface AdUnitProps {
 
 const publisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
 
+const adsEnabled = process.env.NEXT_PUBLIC_ADS_ENABLED === "true";
+
 export function AdUnit({ slot, format = "auto", className }: AdUnitProps) {
   useEffect(() => {
-    if (!publisherId || !slot) return;
+    if (!adsEnabled || !publisherId || !slot) return;
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch {}
   }, [slot]);
+
+  if (!adsEnabled) return null;
 
   // Dev placeholder when AdSense is not configured
   if (!publisherId || !slot) {
