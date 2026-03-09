@@ -1,5 +1,5 @@
 "use client";
-import { use, useState } from "react";
+import { use, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useTripStore } from "@/store/tripStore";
 import { useSettingsStore } from "@/store/settingsStore";
@@ -10,9 +10,10 @@ import { Select } from "@/components/common/Select";
 import { CURRENCIES } from "@/lib/constants";
 import { exportAllData, importAllData, clearAllData } from "@/lib/db";
 import { duplicateTrip } from "@/lib/utils";
-import { Trash2, Archive, Copy, Download, Upload, AlertTriangle } from "lucide-react";
+import { Trash2, Archive, Copy, Download, Upload, AlertTriangle, Smartphone, ChevronDown, ChevronUp } from "lucide-react";
 import Link from "next/link";
 import { APP_VERSION } from "@/lib/constants";
+import { IOSInstallGuide } from "@/components/common/InstallPrompt";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -29,6 +30,20 @@ export default function SettingsPage({ params }: PageProps) {
 
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [confirmClearAll, setConfirmClearAll] = useState(false);
+  const [isIOSDevice, setIsIOSDevice] = useState(false);
+  const [showIOSGuide, setShowIOSGuide] = useState(false);
+
+  useEffect(() => {
+    const nav = navigator as Navigator & { standalone?: boolean };
+    const alreadyInstalled =
+      nav.standalone === true || window.matchMedia("(display-mode: standalone)").matches;
+    if (alreadyInstalled) return;
+    const ios =
+      /iphone|ipod/i.test(navigator.userAgent) ||
+      /ipad/i.test(navigator.userAgent) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    setIsIOSDevice(ios);
+  }, []);
 
   const currencyOptions = CURRENCIES.map((c) => ({ value: c.code, label: `${c.code} — ${c.name}` }));
   const dateOptions = [
@@ -128,6 +143,26 @@ export default function SettingsPage({ params }: PageProps) {
             />
           </div>
         </Card>
+
+        {/* Install App (iOS only, not already installed) */}
+        {isIOSDevice && (
+          <Card>
+            <button
+              className="w-full flex items-center gap-3 text-left"
+              onClick={() => setShowIOSGuide((v) => !v)}
+            >
+              <div className="shrink-0 w-9 h-9 rounded-lg bg-[var(--primary)] flex items-center justify-center">
+                <Smartphone size={16} className="text-white" />
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-[var(--text-primary)]">Install App on iPhone / iPad</p>
+                <p className="text-xs text-[var(--text-secondary)]">Add to home screen for offline access</p>
+              </div>
+              {showIOSGuide ? <ChevronUp size={16} className="text-[var(--text-secondary)]" /> : <ChevronDown size={16} className="text-[var(--text-secondary)]" />}
+            </button>
+            {showIOSGuide && <IOSInstallGuide />}
+          </Card>
+        )}
 
         {/* Trip Management */}
         {trip && (
