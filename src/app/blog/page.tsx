@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Card } from "@/components/common/Card";
+import { AdUnit } from "@/components/common/AdUnit";
 import { APP_NAME } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -86,6 +87,8 @@ export default function BlogIndexPage() {
             </Card>
           ))}
         </div>
+
+        <AdUnit slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_BLOG ?? ""} format="auto" />
 
         <div className="bg-[var(--primary)] rounded-2xl p-6 text-white text-center">
           <p className="font-semibold text-lg mb-1">Need inspiration?</p>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { TRIP_TEMPLATES } from "@/lib/templates";
 import { getTotalSpent } from "@/lib/utils";
+import { AdUnit } from "@/components/common/AdUnit";
 
 export const metadata: Metadata = {
   title: "Sample Trip Budget Templates",
@@ -90,6 +91,10 @@ export default function TemplatesIndexPage() {
           Not sure how much your next trip will cost? Browse these realistic sample budgets for
           popular destinations and use them as a starting point for your own planning.
         </p>
+
+        <div className="mb-8">
+          <AdUnit slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_TEMPLATES ?? ""} format="horizontal" />
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {TRIP_TEMPLATES.map((template) => {

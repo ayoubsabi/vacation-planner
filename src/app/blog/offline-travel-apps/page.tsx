@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Card } from "@/components/common/Card";
+import { AdUnit } from "@/components/common/AdUnit";
 
 export const metadata: Metadata = {
   title: "Best Free Offline Travel Apps That Work Without Internet",
@@ -125,6 +126,8 @@ export default function OfflineTravelAppsArticle() {
           Arabic packs are particularly useful given how different the scripts are from Latin
           alphabets.
         </p>
+
+        <AdUnit slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE ?? ""} format="auto" className="my-6" />
 
         <h2 className="text-xl font-bold text-[var(--text-primary)] mb-3">
           Offline Budget Tracking — TripBudget

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Card } from "@/components/common/Card";
+import { AdUnit } from "@/components/common/AdUnit";
 
 export const metadata: Metadata = {
   title: "How to Budget a Vacation: A Step-by-Step Guide",
@@ -179,6 +180,8 @@ export default function HowToBudgetArticle() {
           Set a realistic shopping budget rather than leaving it out entirely and overspending by
           accident.
         </p>
+
+        <AdUnit slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE ?? ""} format="auto" className="my-6" />
 
         <h2 className="text-xl font-bold text-[var(--text-primary)] mb-3">
           Step 3: Add a 10-20% Buffer

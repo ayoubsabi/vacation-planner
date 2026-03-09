@@ -5,6 +5,7 @@ import { TripsList } from "@/components/landing/TripsList";
 import { UseCases } from "@/components/landing/UseCases";
 import { FAQ } from "@/components/landing/FAQ";
 import { LandingJsonLd } from "@/components/landing/LandingJsonLd";
+import { AdUnit } from "@/components/common/AdUnit";
 import Link from "next/link";
 import { APP_NAME } from "@/lib/constants";
 
@@ -43,8 +44,14 @@ export default function LandingPage() {
 
       <Hero />
       <TripsList />
+      <div className="max-w-5xl mx-auto px-4 py-2">
+        <AdUnit slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_LANDING_1 ?? ""} format="horizontal" />
+      </div>
       <Features />
       <HowItWorks />
+      <div className="max-w-5xl mx-auto px-4 py-2">
+        <AdUnit slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_LANDING_2 ?? ""} format="horizontal" />
+      </div>
       <UseCases />
       <FAQ />
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Card } from "@/components/common/Card";
+import { AdUnit } from "@/components/common/AdUnit";
 
 export const metadata: Metadata = {
   title: "How to Split Trip Expenses Fairly With Friends",
@@ -129,6 +130,8 @@ export default function SplitExpensesArticle() {
           TripBudget runs this calculation automatically every time you add an expense, so
           you&apos;re always looking at the current, simplified settlement picture.
         </p>
+
+        <AdUnit slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE ?? ""} format="auto" className="my-6" />
 
         <h2 className="text-xl font-bold text-[var(--text-primary)] mb-4">
           Splitting Expenses Step by Step with TripBudget
