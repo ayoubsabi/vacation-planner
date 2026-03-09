@@ -18,13 +18,13 @@ function drawIcon(size) {
   ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
   ctx.fill();
 
-  // Text "TB"
+  // Text "BR"
   const fontSize = Math.round(size * 0.35);
   ctx.fillStyle = "#FFFFFF";
   ctx.font = `bold ${fontSize}px Arial`;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.fillText("TB", size / 2, size / 2 + size * 0.02);
+  ctx.fillText("BR", size / 2, size / 2 + size * 0.02);
 
   return canvas.toBuffer("image/png");
 }

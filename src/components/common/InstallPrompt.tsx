@@ -61,7 +61,7 @@ export function InstallPrompt() {
     <div className="fixed bottom-20 left-4 right-4 z-50 md:left-auto md:right-6 md:w-80">
       <div className="bg-white border border-[var(--border)] rounded-xl shadow-lg p-4 flex items-start gap-3">
         <div className="shrink-0 w-10 h-10 rounded-lg bg-[var(--primary)] flex items-center justify-center">
-          <span className="text-white font-bold text-sm">TB</span>
+          <span className="text-white font-bold text-sm">BR</span>
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-sm font-semibold text-[var(--text-primary)]">Install Budget Rover</p>
