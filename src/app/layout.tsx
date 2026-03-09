@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { APP_NAME } from "@/lib/constants";
 import { StoreProvider } from "@/components/common/StoreProvider";
@@ -139,6 +140,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <InstallPrompt />
           {children}
         </StoreProvider>
+        <Analytics />
       </body>
     </html>
   );
