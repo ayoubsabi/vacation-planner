@@ -79,6 +79,9 @@ export default function LandingPage() {
               <Link href="/blog" className="hover:text-[var(--text-primary)] transition-colors">
                 Blog
               </Link>
+              <Link href="/privacy" className="hover:text-[var(--text-primary)] transition-colors">
+                Privacy Policy
+              </Link>
             </nav>
           </div>
           <div className="border-t border-[var(--border)] pt-4 text-center text-xs text-[var(--text-secondary)]">

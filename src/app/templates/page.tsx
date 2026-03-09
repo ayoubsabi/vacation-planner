@@ -104,7 +104,7 @@ export default function TemplatesIndexPage() {
               Math.round(
                 (new Date(template.trip.endDate).getTime() -
                   new Date(template.trip.startDate).getTime()) /
-                  (1000 * 60 * 60 * 24)
+                (1000 * 60 * 60 * 24)
               ) + 1;
             const perPerson = Math.round(totalSpent / travelers);
 
@@ -210,6 +210,10 @@ export default function TemplatesIndexPage() {
           ·{" "}
           <Link href="/blog" className="hover:underline">
             Blog
+          </Link>{" "}
+          ·{" "}
+          <Link href="/privacy" className="hover:underline">
+            Privacy Policy
           </Link>{" "}
           · Data stays on your device · No account needed
         </p>

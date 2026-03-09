@@ -107,6 +107,10 @@ export default function BlogIndexPage() {
       <footer className="text-center py-8 text-sm text-[var(--text-secondary)] border-t border-[var(--border)]">
         <p>
           <Link href="/" className="hover:underline">{APP_NAME}</Link>{" "}
+          ·{" "}
+          <Link href="/privacy" className="hover:underline">
+            Privacy Policy
+          </Link>{" "}
           · Data stays on your device · No account needed
         </p>
       </footer>
