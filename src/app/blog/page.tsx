@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Card } from "@/components/common/Card";
 import { AdUnit } from "@/components/common/AdUnit";
-import { APP_NAME } from "@/lib/constants";
+import { PublicNav } from "@/components/common/PublicNav";
+import { PublicFooter } from "@/components/common/PublicFooter";
 
 export const metadata: Metadata = {
   title: "Travel Budget Tips & Guides",
@@ -43,19 +44,7 @@ const articles = [
 export default function BlogIndexPage() {
   return (
     <main className="min-h-screen bg-[var(--background)]">
-      <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-[var(--border)]">
-        <div className="flex items-center justify-between gap-6 px-6 h-14 max-w-2xl mx-auto">
-          <Link href="/" className="font-bold text-[var(--primary)] text-base tracking-tight">
-            {APP_NAME}
-          </Link>
-          <Link
-            href="/trip/new"
-            className="text-sm font-semibold bg-[var(--primary)] text-white px-4 py-1.5 rounded-lg hover:opacity-90 transition-opacity shrink-0"
-          >
-            New Trip
-          </Link>
-        </div>
-      </header>
+      <PublicNav />
 
       <div className="max-w-2xl mx-auto px-4 pt-8 pb-12 space-y-6">
         <div>
@@ -104,20 +93,7 @@ export default function BlogIndexPage() {
         </div>
       </div>
 
-      <footer className="text-center py-8 text-sm text-[var(--text-secondary)] border-t border-[var(--border)]">
-        <p>
-          <Link href="/" className="hover:underline">{APP_NAME}</Link>{" "}
-          ·{" "}
-          <Link href="/privacy" className="hover:underline">
-            Privacy
-          </Link>{" "}
-          ·{" "}
-          <Link href="/tos" className="hover:underline">
-            Terms
-          </Link>{" "}
-          · Data stays on your device · No account needed
-        </p>
-      </footer>
+      <PublicFooter />
     </main>
   );
 }

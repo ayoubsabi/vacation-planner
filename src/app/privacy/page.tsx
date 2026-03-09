@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { BreadcrumbJsonLd } from "@/components/common/BreadcrumbJsonLd";
 import { Card } from "@/components/common/Card";
-import { APP_NAME } from "@/lib/constants";
+import { PublicNav } from "@/components/common/PublicNav";
+import { PublicFooter } from "@/components/common/PublicFooter";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com";
 
@@ -63,19 +63,7 @@ export default function PrivacyPage() {
         ]}
       />
 
-      <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-[var(--border)]">
-        <div className="flex items-center justify-between px-6 h-14 max-w-3xl mx-auto">
-          <Link href="/" className="font-bold text-[var(--primary)] text-base tracking-tight">
-            {APP_NAME}
-          </Link>
-          <Link
-            href="/trip/new"
-            className="text-sm font-semibold bg-[var(--primary)] text-white px-4 py-1.5 rounded-lg hover:opacity-90 transition-opacity"
-          >
-            New Trip
-          </Link>
-        </div>
-      </nav>
+      <PublicNav />
 
       <div className="max-w-3xl mx-auto px-4 pt-6 pb-16">
         <Breadcrumb
@@ -232,18 +220,7 @@ export default function PrivacyPage() {
         </Card>
       </div>
 
-      <footer className="text-center py-8 text-sm text-[var(--text-secondary)] border-t border-[var(--border)]">
-        <p>
-          <Link href="/" className="hover:underline">
-            {APP_NAME}
-          </Link>{" "}
-          ·{" "}
-          <Link href="/tos" className="hover:underline">
-            Terms of Service
-          </Link>{" "}
-          · Data stays on your device · No account needed
-        </p>
-      </footer>
+      <PublicFooter />
     </main>
   );
 }

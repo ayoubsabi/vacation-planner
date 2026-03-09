@@ -3,6 +3,8 @@ import Link from "next/link";
 import { TRIP_TEMPLATES } from "@/lib/templates";
 import { getTotalSpent } from "@/lib/utils";
 import { AdUnit } from "@/components/common/AdUnit";
+import { PublicNav } from "@/components/common/PublicNav";
+import { PublicFooter } from "@/components/common/PublicFooter";
 
 export const metadata: Metadata = {
   title: "Sample Trip Budget Templates",
@@ -64,19 +66,7 @@ const SLUG_EMOJIS: Record<string, string> = {
 export default function TemplatesIndexPage() {
   return (
     <main className="min-h-screen bg-[var(--background)]">
-      <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-[var(--border)]">
-        <div className="flex items-center justify-between px-6 h-14 max-w-2xl mx-auto">
-          <Link href="/" className="font-bold text-[var(--primary)] text-base tracking-tight">
-            Budget Rover
-          </Link>
-          <Link
-            href="/trip/new"
-            className="text-sm font-semibold bg-[var(--primary)] text-white px-4 py-1.5 rounded-lg hover:opacity-90 transition-opacity"
-          >
-            New Trip
-          </Link>
-        </div>
-      </nav>
+      <PublicNav />
 
       <script
         type="application/ld+json"
@@ -202,26 +192,7 @@ export default function TemplatesIndexPage() {
         </div>
       </div>
 
-      <footer className="text-center py-8 text-sm text-[var(--text-secondary)] border-t border-[var(--border)]">
-        <p>
-          <Link href="/" className="hover:underline">
-            Budget Rover
-          </Link>{" "}
-          ·{" "}
-          <Link href="/blog" className="hover:underline">
-            Blog
-          </Link>{" "}
-          ·{" "}
-          <Link href="/privacy" className="hover:underline">
-            Privacy
-          </Link>{" "}
-          ·{" "}
-          <Link href="/tos" className="hover:underline">
-            Terms
-          </Link>{" "}
-          · Data stays on your device · No account needed
-        </p>
-      </footer>
+      <PublicFooter />
     </main>
   );
 }
