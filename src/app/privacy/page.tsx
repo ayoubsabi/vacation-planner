@@ -237,6 +237,10 @@ export default function PrivacyPage() {
           <Link href="/" className="hover:underline">
             {APP_NAME}
           </Link>{" "}
+          ·{" "}
+          <Link href="/tos" className="hover:underline">
+            Terms of Service
+          </Link>{" "}
           · Data stays on your device · No account needed
         </p>
       </footer>

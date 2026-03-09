@@ -80,7 +80,10 @@ export default function LandingPage() {
                 Blog
               </Link>
               <Link href="/privacy" className="hover:text-[var(--text-primary)] transition-colors">
-                Privacy Policy
+                Privacy
+              </Link>
+              <Link href="/tos" className="hover:text-[var(--text-primary)] transition-colors">
+                Terms
               </Link>
             </nav>
           </div>

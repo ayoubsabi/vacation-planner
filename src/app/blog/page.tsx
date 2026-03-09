@@ -109,7 +109,11 @@ export default function BlogIndexPage() {
           <Link href="/" className="hover:underline">{APP_NAME}</Link>{" "}
           ·{" "}
           <Link href="/privacy" className="hover:underline">
-            Privacy Policy
+            Privacy
+          </Link>{" "}
+          ·{" "}
+          <Link href="/tos" className="hover:underline">
+            Terms
           </Link>{" "}
           · Data stays on your device · No account needed
         </p>
