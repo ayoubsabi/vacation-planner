@@ -9,14 +9,14 @@ export const metadata: Metadata = {
   description:
     "Browse free trip budget templates for popular destinations. See realistic expense breakdowns for Paris, Tokyo, Bali, Cancun, Barcelona, and Prague.",
   openGraph: {
-    title: "Sample Trip Budget Templates — TripBudget",
+    title: "Sample Trip Budget Templates — Budget Rover",
     description:
       "Browse free trip budget templates for popular destinations. See realistic expense breakdowns for Paris, Tokyo, Bali, and more.",
     type: "website",
   },
 };
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://tripbudget.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -67,7 +67,7 @@ export default function TemplatesIndexPage() {
       <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-[var(--border)]">
         <div className="flex items-center justify-between px-6 h-14 max-w-2xl mx-auto">
           <Link href="/" className="font-bold text-[var(--primary)] text-base tracking-tight">
-            TripBudget
+            Budget Rover
           </Link>
           <Link
             href="/trip/new"
@@ -205,7 +205,7 @@ export default function TemplatesIndexPage() {
       <footer className="text-center py-8 text-sm text-[var(--text-secondary)] border-t border-[var(--border)]">
         <p>
           <Link href="/" className="hover:underline">
-            TripBudget
+            Budget Rover
           </Link>{" "}
           ·{" "}
           <Link href="/blog" className="hover:underline">

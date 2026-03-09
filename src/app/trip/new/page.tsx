@@ -7,15 +7,15 @@ export const metadata: Metadata = {
   description:
     "Start planning your vacation in 3 easy steps. Set your destination, budget, and travelers — no account needed.",
   openGraph: {
-    title: "Create a New Trip — TripBudget",
+    title: "Create a New Trip — Budget Rover",
     description:
       "Set up your vacation budget in minutes. Track expenses, split costs with friends, and export reports.",
     url: "/trip/new",
-    images: [{ url: "/og", width: 1200, height: 630, alt: "TripBudget — Create New Trip" }],
+    images: [{ url: "/og", width: 1200, height: 630, alt: "Budget Rover — Create New Trip" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Create a New Trip — TripBudget",
+    title: "Create a New Trip — Budget Rover",
     description:
       "Set up your vacation budget in minutes. Free, offline, no account required.",
   },

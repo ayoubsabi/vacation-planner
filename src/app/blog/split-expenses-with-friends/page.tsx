@@ -14,7 +14,7 @@ export const metadata: Metadata = {
       "Group travel is fun — until it's time to settle who owes what. Learn how debt minimization works and how to split costs fairly.",
     type: "article",
     publishedTime: "2026-01-15T00:00:00.000Z",
-    authors: ["TripBudget"],
+    authors: ["Budget Rover"],
   },
 };
 
@@ -24,14 +24,14 @@ const jsonLd = {
   headline: "How to Split Trip Expenses Fairly With Friends",
   description:
     "A practical guide to splitting group travel costs fairly, with debt minimization explained in plain language.",
-  author: { "@type": "Organization", name: "TripBudget" },
+  author: { "@type": "Organization", name: "Budget Rover" },
   publisher: {
     "@type": "Organization",
-    name: "TripBudget",
-    url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://tripbudget.app",
+    name: "Budget Rover",
+    url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com",
   },
   datePublished: "2026-01-15T00:00:00.000Z",
-  url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://tripbudget.app"}/blog/split-expenses-with-friends`,
+  url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com"}/blog/split-expenses-with-friends`,
 };
 
 export default function SplitExpensesArticle() {
@@ -127,14 +127,14 @@ export default function SplitExpensesArticle() {
           back-and-forth mess.
         </p>
         <p className="text-[var(--text-secondary)] leading-relaxed mb-8">
-          TripBudget runs this calculation automatically every time you add an expense, so
+          Budget Rover runs this calculation automatically every time you add an expense, so
           you&apos;re always looking at the current, simplified settlement picture.
         </p>
 
         <AdUnit slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE ?? ""} format="auto" className="my-6" />
 
         <h2 className="text-xl font-bold text-[var(--text-primary)] mb-4">
-          Splitting Expenses Step by Step with TripBudget
+          Splitting Expenses Step by Step with Budget Rover
         </h2>
 
         <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
@@ -142,7 +142,7 @@ export default function SplitExpensesArticle() {
         </h3>
         <p className="text-[var(--text-secondary)] leading-relaxed mb-6">
           When you create a trip, add everyone who&apos;s going. Each person gets their own entry so
-          TripBudget can track who paid and who benefits from each expense independently.
+          Budget Rover can track who paid and who benefits from each expense independently.
         </p>
 
         <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
@@ -151,14 +151,14 @@ export default function SplitExpensesArticle() {
         <p className="text-[var(--text-secondary)] leading-relaxed mb-6">
           For every expense, record who paid and which travelers it should be split between. Not all
           expenses split equally — maybe the hotel is shared but one friend paid for their own
-          private activities. TripBudget handles both.
+          private activities. Budget Rover handles both.
         </p>
 
         <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
-          Step 3: Let TripBudget Calculate the Debts
+          Step 3: Let Budget Rover Calculate the Debts
         </h3>
         <p className="text-[var(--text-secondary)] leading-relaxed mb-8">
-          Head to the Expense Splitter tab. TripBudget shows you the minimum set of payments needed
+          Head to the Expense Splitter tab. Budget Rover shows you the minimum set of payments needed
           to settle all debts — no manual maths, no spreadsheet. Share the settlement summary with
           the group via the read-only share link or export a PDF.
         </p>
@@ -208,7 +208,7 @@ export default function SplitExpensesArticle() {
       <footer className="text-center py-8 text-sm text-[var(--text-secondary)] border-t border-[var(--border)]">
         <p>
           <Link href="/" className="hover:underline">
-            TripBudget
+            Budget Rover
           </Link>{" "}
           ·{" "}
           <Link href="/blog" className="hover:underline">

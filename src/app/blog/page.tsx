@@ -7,9 +7,9 @@ import { APP_NAME } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Travel Budget Tips & Guides",
   description:
-    "Free guides on budgeting trips, splitting expenses with friends, and traveling smarter — from the TripBudget team.",
+    "Free guides on budgeting trips, splitting expenses with friends, and traveling smarter — from the Budget Rover team.",
   openGraph: {
-    title: "Travel Budget Tips & Guides — TripBudget Blog",
+    title: "Travel Budget Tips & Guides — Budget Rover Blog",
     description:
       "Free guides on budgeting trips, splitting expenses with friends, and traveling smarter.",
     type: "website",

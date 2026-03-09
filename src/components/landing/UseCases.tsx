@@ -47,7 +47,7 @@ export function UseCases() {
           Built for every kind of trip
         </h2>
         <p className="text-[var(--text-secondary)]">
-          From solo backpacking to group adventures — TripBudget adapts to your travel style
+          From solo backpacking to group adventures — Budget Rover adapts to your travel style
         </p>
       </div>
 

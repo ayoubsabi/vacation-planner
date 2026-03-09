@@ -12,7 +12,7 @@ const features = [
     icon: <WifiOff size={24} />,
     title: "Works Offline",
     description:
-      "TripBudget is a Progressive Web App (PWA). A Service Worker caches the app on first load, and all data is stored in IndexedDB on your device. Add expenses anywhere — no Wi-Fi required.",
+      "Budget Rover is a Progressive Web App (PWA). A Service Worker caches the app on first load, and all data is stored in IndexedDB on your device. Add expenses anywhere — no Wi-Fi required.",
     color: "bg-blue-50 text-[var(--secondary)]",
   },
   {

@@ -5,10 +5,10 @@ import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    question: "Is TripBudget free? Do I need an account?",
+    question: "Is Budget Rover free? Do I need an account?",
     answer: (
       <>
-        TripBudget is 100% free — no account, no email, no subscription. All your trip data is
+        Budget Rover is 100% free — no account, no email, no subscription. All your trip data is
         stored directly on your device using your browser&apos;s local storage. Nothing is ever
         sent to a server.{" "}
         <Link href="/trip/new" className="text-[var(--primary)] hover:underline font-medium">
@@ -21,9 +21,9 @@ const faqs = [
     question: "How does expense splitting work?",
     answer: (
       <>
-        TripBudget uses a <strong className="text-[var(--text-primary)]">debt-minimization algorithm</strong> to calculate the fewest
+        Budget Rover uses a <strong className="text-[var(--text-primary)]">debt-minimization algorithm</strong> to calculate the fewest
         possible payments needed to settle group expenses. Add your travelers, log each expense with
-        who paid and who it&apos;s split between, and TripBudget computes net balances
+        who paid and who it&apos;s split between, and Budget Rover computes net balances
         automatically — telling each person exactly what they owe. See it in action in our{" "}
         <Link
           href="/templates/tokyo-group"
@@ -35,10 +35,10 @@ const faqs = [
     ),
   },
   {
-    question: "Does TripBudget work offline?",
+    question: "Does Budget Rover work offline?",
     answer: (
       <>
-        Yes. TripBudget is a <strong className="text-[var(--text-primary)]">Progressive Web App (PWA)</strong>. After your first visit, a
+        Yes. Budget Rover is a <strong className="text-[var(--text-primary)]">Progressive Web App (PWA)</strong>. After your first visit, a
         Service Worker caches the entire app to your device. You can add expenses, view charts, and
         check balances with no internet connection at all — on a plane, in a remote village, or in
         an underground metro. All data lives in your browser&apos;s IndexedDB and never leaves your
@@ -56,7 +56,7 @@ const faqs = [
         <strong className="text-[var(--text-primary)]">QR code</strong> — anyone with the link can
         view the budget without needing an account. Learn more on the{" "}
         <Link href="/blog" className="text-[var(--primary)] hover:underline font-medium">
-          TripBudget blog →
+          Budget Rover blog →
         </Link>
       </>
     ),

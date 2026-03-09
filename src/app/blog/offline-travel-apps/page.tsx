@@ -14,7 +14,7 @@ export const metadata: Metadata = {
       "The best travel apps that work without Wi-Fi — offline maps, translation, and expense tracking you can rely on anywhere in the world.",
     type: "article",
     publishedTime: "2026-02-05T00:00:00.000Z",
-    authors: ["TripBudget"],
+    authors: ["Budget Rover"],
   },
 };
 
@@ -24,14 +24,14 @@ const jsonLd = {
   headline: "Best Free Offline Travel Apps That Work Without Internet",
   description:
     "The best travel apps that work without Wi-Fi — offline maps, translation, and expense tracking you can rely on anywhere in the world.",
-  author: { "@type": "Organization", name: "TripBudget" },
+  author: { "@type": "Organization", name: "Budget Rover" },
   publisher: {
     "@type": "Organization",
-    name: "TripBudget",
-    url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://tripbudget.app",
+    name: "Budget Rover",
+    url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com",
   },
   datePublished: "2026-02-05T00:00:00.000Z",
-  url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://tripbudget.app"}/blog/offline-travel-apps`,
+  url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com"}/blog/offline-travel-apps`,
 };
 
 export default function OfflineTravelAppsArticle() {
@@ -130,21 +130,21 @@ export default function OfflineTravelAppsArticle() {
         <AdUnit slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE ?? ""} format="auto" className="my-6" />
 
         <h2 className="text-xl font-bold text-[var(--text-primary)] mb-3">
-          Offline Budget Tracking — TripBudget
+          Offline Budget Tracking — Budget Rover
         </h2>
         <p className="text-[var(--text-secondary)] leading-relaxed mb-6">
           Most expense tracking apps sync to a cloud server — which means they need internet to
           function and your financial data lives on someone else&apos;s server.{" "}
-          <strong className="text-[var(--text-primary)]">TripBudget</strong> is different: it&apos;s
+          <strong className="text-[var(--text-primary)]">Budget Rover</strong> is different: it&apos;s
           a fully offline-first Progressive Web App (PWA) that stores everything on your device.
           No account. No cloud. No signal required after the first load.
         </p>
 
         <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
-          How TripBudget Works Offline
+          How Budget Rover Works Offline
         </h3>
         <p className="text-[var(--text-secondary)] leading-relaxed mb-4">
-          When you first open TripBudget, a{" "}
+          When you first open Budget Rover, a{" "}
           <strong className="text-[var(--text-primary)]">Service Worker</strong> caches the entire
           app shell — all the JavaScript, CSS, and UI components — to your device. From that point
           on, the app loads instantly from the cache, even with no internet.
@@ -159,11 +159,11 @@ export default function OfflineTravelAppsArticle() {
         </p>
 
         <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
-          Installing TripBudget as a PWA
+          Installing Budget Rover as a PWA
         </h3>
         <p className="text-[var(--text-secondary)] leading-relaxed mb-4">
           On Android (Chrome), tap the three-dot menu and select &quot;Add to Home Screen.&quot; On
-          iOS (Safari), tap the share icon and select &quot;Add to Home Screen.&quot; TripBudget
+          iOS (Safari), tap the share icon and select &quot;Add to Home Screen.&quot; Budget Rover
           then works like a native app — full screen, no browser chrome, instant launch.
         </p>
         <p className="text-[var(--text-secondary)] leading-relaxed mb-8">
@@ -188,7 +188,7 @@ export default function OfflineTravelAppsArticle() {
             {[
               { label: "Maps", detail: "Maps.me or OsmAnd (download country before flying)" },
               { label: "Translation", detail: "Google Translate with offline language packs" },
-              { label: "Budget tracking", detail: "TripBudget PWA (install to home screen)" },
+              { label: "Budget tracking", detail: "Budget Rover PWA (install to home screen)" },
               { label: "Boarding passes", detail: "Download to Apple Wallet or Google Wallet before airport" },
               { label: "Guides", detail: "Save Lonely Planet or Wikivoyage pages to your browser's reading list" },
             ].map(({ label, detail }) => (
@@ -214,7 +214,7 @@ export default function OfflineTravelAppsArticle() {
         <div className="bg-[var(--primary)] rounded-2xl p-6 text-white text-center">
           <p className="font-semibold text-lg mb-1">Track your trip spending — offline</p>
           <p className="text-white/80 text-sm mb-4">
-            TripBudget works anywhere, even without internet. Free, no account, no app store.
+            Budget Rover works anywhere, even without internet. Free, no account, no app store.
           </p>
           <Link
             href="/trip/new"
@@ -228,7 +228,7 @@ export default function OfflineTravelAppsArticle() {
       <footer className="text-center py-8 text-sm text-[var(--text-secondary)] border-t border-[var(--border)]">
         <p>
           <Link href="/" className="hover:underline">
-            TripBudget
+            Budget Rover
           </Link>{" "}
           ·{" "}
           <Link href="/blog" className="hover:underline">

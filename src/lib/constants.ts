@@ -64,5 +64,5 @@ export const CATEGORY_COLORS: Record<ExpenseCategory, string> = {
   other: "#94A3B8",
 };
 
-export const APP_NAME = "TripBudget";
+export const APP_NAME = "Budget Rover";
 export const APP_VERSION = "1.0.0";

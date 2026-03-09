@@ -1,6 +1,6 @@
 {
-  "name": "TripBudget — Vacation Budget Planner",
-  "short_name": "TripBudget",
+  "name": "Budget Rover — Vacation Budget Planner",
+  "short_name": "Budget Rover",
   "description": "Plan your trip budget, split expenses with friends, and track spending — no login required.",
   "start_url": "/",
   "display": "standalone",

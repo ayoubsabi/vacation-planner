@@ -9,7 +9,7 @@ import { InstallPrompt } from "@/components/common/InstallPrompt";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://tripbudget.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com";
 
 const jsonLd = {
   "@context": "https://schema.org",

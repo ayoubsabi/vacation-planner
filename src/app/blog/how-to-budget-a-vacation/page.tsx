@@ -14,7 +14,7 @@ export const metadata: Metadata = {
       "From estimating flights to building a daily spending buffer, here's a practical framework for planning a realistic trip budget.",
     type: "article",
     publishedTime: "2026-01-22T00:00:00.000Z",
-    authors: ["TripBudget"],
+    authors: ["Budget Rover"],
   },
 };
 
@@ -24,14 +24,14 @@ const jsonLd = {
   headline: "How to Budget a Vacation: A Step-by-Step Guide",
   description:
     "Learn how to plan a realistic vacation budget by category, build a spending buffer, and track actuals vs estimates.",
-  author: { "@type": "Organization", name: "TripBudget" },
+  author: { "@type": "Organization", name: "Budget Rover" },
   publisher: {
     "@type": "Organization",
-    name: "TripBudget",
-    url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://tripbudget.app",
+    name: "Budget Rover",
+    url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com",
   },
   datePublished: "2026-01-22T00:00:00.000Z",
-  url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://tripbudget.app"}/blog/how-to-budget-a-vacation`,
+  url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com"}/blog/how-to-budget-a-vacation`,
 };
 
 const destinations = [
@@ -199,7 +199,7 @@ export default function HowToBudgetArticle() {
         <p className="text-[var(--text-secondary)] leading-relaxed mb-8">
           A budget you build before the trip but never check during it isn&apos;t much help. Log
           expenses as you go — ideally the same day — so you can see whether you&apos;re on track.
-          TripBudget&apos;s daily spending chart makes it easy to spot if one category is running
+          Budget Rover&apos;s daily spending chart makes it easy to spot if one category is running
           away from your estimates and adjust.
         </p>
 
@@ -272,7 +272,7 @@ export default function HowToBudgetArticle() {
       <footer className="text-center py-8 text-sm text-[var(--text-secondary)] border-t border-[var(--border)]">
         <p>
           <Link href="/" className="hover:underline">
-            TripBudget
+            Budget Rover
           </Link>{" "}
           ·{" "}
           <Link href="/blog" className="hover:underline">

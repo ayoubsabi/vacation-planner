@@ -64,7 +64,7 @@ export function InstallPrompt() {
           <span className="text-white font-bold text-sm">TB</span>
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-semibold text-[var(--text-primary)]">Install TripBudget</p>
+          <p className="text-sm font-semibold text-[var(--text-primary)]">Install Budget Rover</p>
           {isIOS ? (
             <p className="text-xs text-[var(--text-secondary)] mt-0.5">
               Tap <Share size={11} className="inline mb-0.5" /> Share, then{" "}

@@ -67,7 +67,7 @@ export async function GET() {
               letterSpacing: "-0.5px",
             }}
           >
-            TripBudget
+            Budget Rover
           </span>
         </div>
 

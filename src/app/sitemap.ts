@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { TRIP_TEMPLATES } from "@/lib/templates";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://tripbudget.app";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com";
 
   return [
     {
