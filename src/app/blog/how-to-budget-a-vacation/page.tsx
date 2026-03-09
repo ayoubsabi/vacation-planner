@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
+import { BreadcrumbJsonLd } from "@/components/common/BreadcrumbJsonLd";
 import { Card } from "@/components/common/Card";
 import { AdUnit } from "@/components/common/AdUnit";
 
@@ -15,6 +16,21 @@ export const metadata: Metadata = {
     type: "article",
     publishedTime: "2026-01-22T00:00:00.000Z",
     authors: ["Budget Rover"],
+    images: [
+      {
+        url: "/og?title=How+to+Budget+a+Vacation%3A+A+Step-by-Step+Guide",
+        width: 1200,
+        height: 630,
+        alt: "How to Budget a Vacation: A Step-by-Step Guide",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Budget a Vacation: A Step-by-Step Guide",
+    description:
+      "From estimating flights to building a daily spending buffer, here's a practical framework for planning a realistic trip budget.",
+    images: ["/og?title=How+to+Budget+a+Vacation%3A+A+Step-by-Step+Guide"],
   },
 };
 
@@ -29,9 +45,22 @@ const jsonLd = {
     "@type": "Organization",
     name: "Budget Rover",
     url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com",
+    logo: {
+      "@type": "ImageObject",
+      url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com"}/icons/icon-512.png`,
+      width: 512,
+      height: 512,
+    },
   },
   datePublished: "2026-01-22T00:00:00.000Z",
+  dateModified: "2026-01-22T00:00:00.000Z",
   url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com"}/blog/how-to-budget-a-vacation`,
+  image: {
+    "@type": "ImageObject",
+    url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com"}/og?title=How+to+Budget+a+Vacation%3A+A+Step-by-Step+Guide`,
+    width: 1200,
+    height: 630,
+  },
 };
 
 const destinations = [
@@ -98,6 +127,13 @@ export default function HowToBudgetArticle() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Blog", href: "/blog" },
+          { name: "How to Budget a Vacation" },
+        ]}
       />
 
       <article className="max-w-2xl mx-auto px-4 pt-6 pb-12">

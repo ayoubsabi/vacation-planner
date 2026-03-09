@@ -33,7 +33,12 @@ const jsonLd = {
     "QR code sharing",
     "No account required",
   ],
-  screenshot: `${siteUrl}/og`,
+  screenshot: {
+    "@type": "ImageObject",
+    url: `${siteUrl}/og`,
+    width: 1200,
+    height: 630,
+  },
 };
 
 export const metadata: Metadata = {

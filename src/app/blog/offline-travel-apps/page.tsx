@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
+import { BreadcrumbJsonLd } from "@/components/common/BreadcrumbJsonLd";
 import { Card } from "@/components/common/Card";
 import { AdUnit } from "@/components/common/AdUnit";
 
@@ -15,6 +16,21 @@ export const metadata: Metadata = {
     type: "article",
     publishedTime: "2026-02-05T00:00:00.000Z",
     authors: ["Budget Rover"],
+    images: [
+      {
+        url: "/og?title=Best+Free+Offline+Travel+Apps+That+Work+Without+Internet",
+        width: 1200,
+        height: 630,
+        alt: "Best Free Offline Travel Apps That Work Without Internet",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Best Free Offline Travel Apps That Work Without Internet",
+    description:
+      "The best travel apps that work without Wi-Fi — offline maps, translation, and expense tracking you can rely on anywhere in the world.",
+    images: ["/og?title=Best+Free+Offline+Travel+Apps+That+Work+Without+Internet"],
   },
 };
 
@@ -29,9 +45,22 @@ const jsonLd = {
     "@type": "Organization",
     name: "Budget Rover",
     url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com",
+    logo: {
+      "@type": "ImageObject",
+      url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com"}/icons/icon-512.png`,
+      width: 512,
+      height: 512,
+    },
   },
   datePublished: "2026-02-05T00:00:00.000Z",
+  dateModified: "2026-02-05T00:00:00.000Z",
   url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com"}/blog/offline-travel-apps`,
+  image: {
+    "@type": "ImageObject",
+    url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com"}/og?title=Best+Free+Offline+Travel+Apps+That+Work+Without+Internet`,
+    width: 1200,
+    height: 630,
+  },
 };
 
 export default function OfflineTravelAppsArticle() {
@@ -63,6 +92,13 @@ export default function OfflineTravelAppsArticle() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Blog", href: "/blog" },
+          { name: "Offline Travel Apps" },
+        ]}
       />
 
       <article className="max-w-2xl mx-auto px-4 pt-6 pb-12">

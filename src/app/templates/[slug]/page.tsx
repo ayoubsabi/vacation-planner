@@ -6,6 +6,7 @@ import { TRIP_TEMPLATES } from "@/lib/templates";
 import { CATEGORY_COLORS } from "@/lib/constants";
 import { formatCurrency, getTotalSpent, getBudgetPercentage, getBudgetStatus } from "@/lib/utils";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
+import { BreadcrumbJsonLd } from "@/components/common/BreadcrumbJsonLd";
 import { Card } from "@/components/common/Card";
 import { CategoryIcon } from "@/components/icons/CategoryIcons";
 
@@ -21,6 +22,8 @@ export async function generateMetadata({
   const { slug } = await params;
   const template = TRIP_TEMPLATES.find((t) => t.slug === slug);
   if (!template) return {};
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com";
+  const encodedTitle = encodeURIComponent(template.title);
   return {
     title: template.title,
     description: template.metaDescription,
@@ -28,6 +31,21 @@ export async function generateMetadata({
       title: template.title,
       description: template.metaDescription,
       type: "website",
+      url: `${siteUrl}/templates/${slug}`,
+      images: [
+        {
+          url: `/og?title=${encodedTitle}`,
+          width: 1200,
+          height: 630,
+          alt: template.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: template.title,
+      description: template.metaDescription,
+      images: [`/og?title=${encodedTitle}`],
     },
   };
 }
@@ -113,6 +131,13 @@ export default async function TemplateDetailPage({
       </header>
 
       <div className="max-w-2xl mx-auto px-4 pt-6 pb-12 space-y-4">
+        <BreadcrumbJsonLd
+          items={[
+            { name: "Home", href: "/" },
+            { name: "Templates", href: "/templates" },
+            { name: trip.destination },
+          ]}
+        />
         <Breadcrumb
           items={[
             { label: "Home", href: "/" },

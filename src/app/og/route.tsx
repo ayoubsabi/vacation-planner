@@ -1,8 +1,12 @@
 import { ImageResponse } from "next/og";
+import { NextRequest } from "next/server";
 
 export const runtime = "edge";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const title = searchParams.get("title");
+
   return new ImageResponse(
     (
       <div
@@ -71,36 +75,38 @@ export async function GET() {
           </span>
         </div>
 
-        {/* Main headline */}
+        {/* Main headline — dynamic when ?title= is provided */}
         <div
           style={{
-            fontSize: "72px",
+            fontSize: title ? (title.length > 60 ? "48px" : "60px") : "72px",
             fontWeight: "800",
             color: "#ffffff",
             lineHeight: "1.1",
             letterSpacing: "-2px",
             marginBottom: "28px",
-            maxWidth: "800px",
+            maxWidth: "900px",
           }}
         >
-          Vacation Budget Planner
+          {title ?? "Vacation Budget Planner"}
         </div>
 
-        {/* Subheadline */}
-        <div
-          style={{
-            fontSize: "30px",
-            color: "rgba(255,255,255,0.85)",
-            marginBottom: "56px",
-            maxWidth: "680px",
-            lineHeight: "1.4",
-          }}
-        >
-          Track spending, split expenses with friends, export PDF reports.
-        </div>
+        {/* Subheadline — only shown on the default (no title) image */}
+        {!title && (
+          <div
+            style={{
+              fontSize: "30px",
+              color: "rgba(255,255,255,0.85)",
+              marginBottom: "56px",
+              maxWidth: "680px",
+              lineHeight: "1.4",
+            }}
+          >
+            Track spending, split expenses with friends, export PDF reports.
+          </div>
+        )}
 
         {/* Feature chips */}
-        <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginTop: title ? "16px" : "0" }}>
           {["No Login Required", "Works Offline", "Split Expenses", "100% Free"].map((label) => (
             <div
               key={label}
