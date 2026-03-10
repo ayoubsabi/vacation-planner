@@ -5,6 +5,8 @@ import { AdUnit } from "@/components/common/AdUnit";
 import { PublicNav } from "@/components/common/PublicNav";
 import { PublicFooter } from "@/components/common/PublicFooter";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com";
+
 export const metadata: Metadata = {
   title: "Travel Budget Tips & Guides",
   description:
@@ -14,6 +16,24 @@ export const metadata: Metadata = {
     description:
       "Free guides on budgeting trips, splitting expenses with friends, and traveling smarter.",
     type: "website",
+    images: [
+      {
+        url: "/og?title=Travel+Budget+Tips+%26+Guides",
+        width: 1200,
+        height: 630,
+        alt: "Travel Budget Tips & Guides — Budget Rover Blog",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Travel Budget Tips & Guides — Budget Rover Blog",
+    description:
+      "Free guides on budgeting trips, splitting expenses with friends, and traveling smarter.",
+    images: ["/og?title=Travel+Budget+Tips+%26+Guides"],
+  },
+  alternates: {
+    canonical: `${siteUrl}/blog`,
   },
 };
 

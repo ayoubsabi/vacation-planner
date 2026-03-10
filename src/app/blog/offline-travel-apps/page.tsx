@@ -5,6 +5,8 @@ import { BreadcrumbJsonLd } from "@/components/common/BreadcrumbJsonLd";
 import { Card } from "@/components/common/Card";
 import { AdUnit } from "@/components/common/AdUnit";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com";
+
 export const metadata: Metadata = {
   title: "Best Free Offline Travel Apps That Work Without Internet",
   description:
@@ -31,6 +33,9 @@ export const metadata: Metadata = {
     description:
       "The best travel apps that work without Wi-Fi — offline maps, translation, and expense tracking you can rely on anywhere in the world.",
     images: ["/og?title=Best+Free+Offline+Travel+Apps+That+Work+Without+Internet"],
+  },
+  alternates: {
+    canonical: `${siteUrl}/blog/offline-travel-apps`,
   },
 };
 

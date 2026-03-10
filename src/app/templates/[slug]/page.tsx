@@ -47,6 +47,9 @@ export async function generateMetadata({
       description: template.metaDescription,
       images: [`/og?title=${encodedTitle}`],
     },
+    alternates: {
+      canonical: `${siteUrl}/templates/${slug}`,
+    },
   };
 }
 

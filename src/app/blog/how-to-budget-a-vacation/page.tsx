@@ -5,6 +5,8 @@ import { BreadcrumbJsonLd } from "@/components/common/BreadcrumbJsonLd";
 import { Card } from "@/components/common/Card";
 import { AdUnit } from "@/components/common/AdUnit";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com";
+
 export const metadata: Metadata = {
   title: "How to Budget a Vacation: A Step-by-Step Guide",
   description:
@@ -31,6 +33,9 @@ export const metadata: Metadata = {
     description:
       "From estimating flights to building a daily spending buffer, here's a practical framework for planning a realistic trip budget.",
     images: ["/og?title=How+to+Budget+a+Vacation%3A+A+Step-by-Step+Guide"],
+  },
+  alternates: {
+    canonical: `${siteUrl}/blog/how-to-budget-a-vacation`,
   },
 };
 

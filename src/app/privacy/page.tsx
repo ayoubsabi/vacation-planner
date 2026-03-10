@@ -32,6 +32,9 @@ export const metadata: Metadata = {
       "Budget Rover stores all trip data locally on your device. No accounts, no servers, no tracking.",
     images: ["/og?title=Privacy+Policy+%E2%80%94+Budget+Rover"],
   },
+  alternates: {
+    canonical: `${siteUrl}/privacy`,
+  },
 };
 
 const jsonLd = {

@@ -8,8 +8,8 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         // allow: "/trip/new" is more specific than disallow: "/trip/" — Google honors specificity
-        allow: ["/", "/trip/new", "/share/", "/blog/", "/templates/"],
-        disallow: ["/trip/", "/api/"],
+        allow: ["/", "/trip/new", "/blog/", "/templates/"],
+        disallow: ["/trip/", "/share/", "/api/"],
       },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,

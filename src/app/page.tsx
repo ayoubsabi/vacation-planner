@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Hero } from "@/components/landing/Hero";
 import { Features } from "@/components/landing/Features";
 import { HowItWorks } from "@/components/landing/HowItWorks";
@@ -8,6 +9,24 @@ import { LandingJsonLd } from "@/components/landing/LandingJsonLd";
 import { AdUnit } from "@/components/common/AdUnit";
 import Link from "next/link";
 import { APP_NAME } from "@/lib/constants";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com";
+
+export const metadata: Metadata = {
+  title: "Free Vacation Budget Planner",
+  description:
+    "Plan your trip budget, split expenses with friends, and track spending — no login required. Works offline on any device.",
+  alternates: {
+    canonical: siteUrl,
+  },
+  openGraph: {
+    title: "Budget Rover — Free Vacation Budget Planner",
+    description:
+      "Track vacation spending, split expenses with friends, export PDF reports. 100% free, works offline, no account needed.",
+    url: siteUrl,
+    type: "website",
+  },
+};
 
 export default function LandingPage() {
   return (

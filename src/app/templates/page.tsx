@@ -6,6 +6,8 @@ import { AdUnit } from "@/components/common/AdUnit";
 import { PublicNav } from "@/components/common/PublicNav";
 import { PublicFooter } from "@/components/common/PublicFooter";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com";
+
 export const metadata: Metadata = {
   title: "Sample Trip Budget Templates",
   description:
@@ -15,10 +17,26 @@ export const metadata: Metadata = {
     description:
       "Browse free trip budget templates for popular destinations. See realistic expense breakdowns for Paris, Tokyo, Bali, and more.",
     type: "website",
+    images: [
+      {
+        url: "/og?title=Sample+Trip+Budget+Templates",
+        width: 1200,
+        height: 630,
+        alt: "Sample Trip Budget Templates — Budget Rover",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sample Trip Budget Templates — Budget Rover",
+    description:
+      "Browse free trip budget templates for popular destinations. See realistic expense breakdowns for Paris, Tokyo, Bali, and more.",
+    images: ["/og?title=Sample+Trip+Budget+Templates"],
+  },
+  alternates: {
+    canonical: `${siteUrl}/templates`,
   },
 };
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com";
 
 const jsonLd = {
   "@context": "https://schema.org",

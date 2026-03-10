@@ -33,6 +33,9 @@ export const metadata: Metadata = {
       "Budget Rover is a free, as-is tool. Read our terms covering acceptable use, data responsibility, and liability limitations.",
     images: ["/og?title=Terms+of+Service+%E2%80%94+Budget+Rover"],
   },
+  alternates: {
+    canonical: `${siteUrl}/tos`,
+  },
 };
 
 const jsonLd = {
