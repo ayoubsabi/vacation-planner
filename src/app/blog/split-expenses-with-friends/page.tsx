@@ -5,6 +5,8 @@ import { BreadcrumbJsonLd } from "@/components/common/BreadcrumbJsonLd";
 import { Card } from "@/components/common/Card";
 import { AdUnit } from "@/components/common/AdUnit";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com";
+
 export const metadata: Metadata = {
   title: "How to Split Trip Expenses Fairly With Friends",
   description:
@@ -31,6 +33,9 @@ export const metadata: Metadata = {
     description:
       "Group travel is fun — until it's time to settle who owes what. Learn how debt minimization works and how to split costs fairly.",
     images: ["/og?title=How+to+Split+Trip+Expenses+Fairly+With+Friends"],
+  },
+  alternates: {
+    canonical: `${siteUrl}/blog/split-expenses-with-friends`,
   },
 };
 

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { TripWizard } from "@/components/trip/TripWizard";
 import { Header } from "@/components/common/Header";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com";
+
 export const metadata: Metadata = {
   title: "Create New Trip",
   description:
@@ -18,6 +20,9 @@ export const metadata: Metadata = {
     title: "Create a New Trip — Budget Rover",
     description:
       "Set up your vacation budget in minutes. Free, offline, no account required.",
+  },
+  alternates: {
+    canonical: `${siteUrl}/trip/new`,
   },
 };
 
