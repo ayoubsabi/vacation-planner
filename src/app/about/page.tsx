@@ -40,17 +40,31 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebPage",
-  name: "About Budget Rover",
-  description:
-    "Budget Rover is a free, offline-first vacation budget planner. No accounts, no tracking, no subscriptions — just simple trip budgeting that works anywhere.",
-  url: `${siteUrl}/about`,
-  publisher: {
-    "@type": "Organization",
-    name: "Budget Rover",
-    url: siteUrl,
-  },
-  dateModified: "2026-03-14T00:00:00.000Z",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      name: "About Budget Rover",
+      description:
+        "Budget Rover is a free, offline-first vacation budget planner. No accounts, no tracking, no subscriptions — just simple trip budgeting that works anywhere.",
+      url: `${siteUrl}/about`,
+      publisher: { "@id": `${siteUrl}/#organization` },
+      dateModified: "2026-03-14T00:00:00.000Z",
+    },
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "Budget Rover",
+      url: siteUrl,
+      description:
+        "Budget Rover is a free, privacy-first vacation budget planner. No accounts, no subscriptions, works offline.",
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/icons/icon-512.png`,
+        width: 512,
+        height: 512,
+      },
+    },
+  ],
 };
 
 const values = [

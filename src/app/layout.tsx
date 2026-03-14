@@ -14,32 +14,49 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com";
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  name: APP_NAME,
-  url: siteUrl,
-  description:
-    "Plan your trip budget, split expenses with friends, and track spending. No login required. Works offline.",
-  applicationCategory: "FinanceApplication",
-  operatingSystem: "All",
-  browserRequirements: "Requires JavaScript. Works in all modern browsers.",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
-  },
-  featureList: [
-    "Offline support",
-    "Expense splitting",
-    "PDF export",
-    "QR code sharing",
-    "No account required",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": `${siteUrl}/#webapp`,
+      name: APP_NAME,
+      url: siteUrl,
+      description:
+        "Plan your trip budget, split expenses with friends, and track spending. No login required. Works offline.",
+      applicationCategory: "FinanceApplication",
+      operatingSystem: "All",
+      browserRequirements: "Requires JavaScript. Works in all modern browsers.",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      featureList: [
+        "Offline support",
+        "Expense splitting",
+        "PDF export",
+        "QR code sharing",
+        "No account required",
+      ],
+      screenshot: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/og`,
+        width: 1200,
+        height: 630,
+      },
+    },
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: APP_NAME,
+      url: siteUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/icons/icon-512.png`,
+        width: 512,
+        height: 512,
+      },
+    },
   ],
-  screenshot: {
-    "@type": "ImageObject",
-    url: `${siteUrl}/og`,
-    width: 1200,
-    height: 630,
-  },
 };
 
 export const metadata: Metadata = {
@@ -109,6 +126,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  alternates: {
+    types: {
+      "application/rss+xml": `${siteUrl}/feed.xml`,
+    },
+  },
 };
 
 export const viewport: Viewport = {
@@ -122,6 +144,16 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={inter.variable}>
+      <head>
+        {process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID && (
+          <>
+            <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
+            <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+          </>
+        )}
+        <link rel="preconnect" href="https://va.vercel-scripts.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://va.vercel-scripts.com" />
+      </head>
       <body className="antialiased bg-[var(--background)] text-[var(--text-primary)]">
         {process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID && (
           <Script

@@ -59,6 +59,7 @@ const jsonLd = {
   },
   datePublished: "2026-01-22T00:00:00.000Z",
   dateModified: "2026-01-22T00:00:00.000Z",
+  wordCount: 750,
   url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com"}/blog/how-to-budget-a-vacation`,
   image: {
     "@type": "ImageObject",

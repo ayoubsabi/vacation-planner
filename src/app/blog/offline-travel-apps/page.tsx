@@ -59,6 +59,7 @@ const jsonLd = {
   },
   datePublished: "2026-02-05T00:00:00.000Z",
   dateModified: "2026-02-05T00:00:00.000Z",
+  wordCount: 780,
   url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com"}/blog/offline-travel-apps`,
   image: {
     "@type": "ImageObject",
