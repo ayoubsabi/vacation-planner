@@ -10,6 +10,12 @@ export function PublicNav() {
         </Link>
         <div className="flex items-center gap-6">
           <Link
+            href="/about"
+            className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors hidden sm:inline"
+          >
+            About
+          </Link>
+          <Link
             href="/blog"
             className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors hidden sm:inline"
           >

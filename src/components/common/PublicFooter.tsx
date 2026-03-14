@@ -27,6 +27,9 @@ export function PublicFooter() {
             <Link href="/blog" className="hover:text-[var(--text-primary)] transition-colors">
               Blog
             </Link>
+            <Link href="/about" className="hover:text-[var(--text-primary)] transition-colors">
+              About
+            </Link>
             <Link href="/privacy" className="hover:text-[var(--text-primary)] transition-colors">
               Privacy
             </Link>
