@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { X, Download, Share, Smartphone } from "lucide-react";
+import { track } from "@vercel/analytics";
 
 const DISMISSED_KEY = "pwa-install-dismissed";
 
@@ -72,8 +73,14 @@ export function InstallPrompt() {
       setShow(true);
     };
 
+    const installedHandler = () => track("pwa_installed");
+
     window.addEventListener("beforeinstallprompt", handler);
-    return () => window.removeEventListener("beforeinstallprompt", handler);
+    window.addEventListener("appinstalled", installedHandler);
+    return () => {
+      window.removeEventListener("beforeinstallprompt", handler);
+      window.removeEventListener("appinstalled", installedHandler);
+    };
   }, []);
 
   const dismiss = () => {
@@ -83,6 +90,7 @@ export function InstallPrompt() {
 
   const install = async () => {
     if (!deferredPrompt) return;
+    track("pwa_install_clicked");
     await deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
     if (outcome === "accepted") {
