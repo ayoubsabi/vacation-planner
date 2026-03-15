@@ -18,15 +18,14 @@ export function Hero() {
         </div>
 
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
-          Plan trips,{" "}
+          Free Vacation &amp;{" "}
           <span className="text-[var(--secondary)] bg-white/20 px-2 rounded-lg">
-            track spending
+            Trip Planner
           </span>
-          {" "}with friends
         </h1>
 
         <p className="text-lg text-white/90 mb-6 sm:mb-8 max-w-md mx-auto">
-          Budget smarter, split expenses fairly, and visualize your travel spending — all offline, no account needed.
+          Your all-in-one travel planner and vacation budget tracker — split expenses with friends, visualize spending, and export PDF reports. All offline, no account needed.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">

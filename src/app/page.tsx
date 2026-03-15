@@ -13,16 +13,16 @@ import { PublicFooter } from "@/components/common/PublicFooter";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://budgetrover.com";
 
 export const metadata: Metadata = {
-  title: "Free Vacation Budget Planner",
+  title: "Free Vacation & Trip Planner — Budget Tracker",
   description:
-    "Plan your trip budget, split expenses with friends, and track spending — no login required. Works offline on any device.",
+    "Budget Rover is a free vacation planner and trip budget tracker. Plan your travel budget, split expenses with friends, and track spending — no login required. Works offline.",
   alternates: {
     canonical: siteUrl,
   },
   openGraph: {
-    title: "Budget Rover — Free Vacation Budget Planner",
+    title: "Budget Rover — Free Vacation & Trip Planner",
     description:
-      "Track vacation spending, split expenses with friends, export PDF reports. 100% free, works offline, no account needed.",
+      "Track vacation spending, split travel expenses with friends, export PDF reports. 100% free, works offline, no account needed.",
     url: siteUrl,
     type: "website",
   },

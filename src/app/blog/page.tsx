@@ -39,6 +39,27 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    slug: "trip-planner-guide",
+    title: "How to Plan a Trip: A Complete Travel Planner Guide",
+    date: "March 15, 2026",
+    excerpt:
+      "A five-phase guide to planning any trip from scratch — choose your destination, set a budget, build your traveler group, track spending, and settle up after.",
+  },
+  {
+    slug: "group-travel-budget-planner",
+    title: "Group Travel Budget Planner: How to Plan a Trip With Friends",
+    date: "March 15, 2026",
+    excerpt:
+      "How to plan a group trip budget without the money stress — agree on costs upfront, track shared expenses fairly, and settle debts with the fewest possible payments.",
+  },
+  {
+    slug: "vacation-budget-planner-guide",
+    title: "Vacation Budget Planner: Estimate, Track & Stick to Your Travel Budget",
+    date: "March 15, 2026",
+    excerpt:
+      "A complete vacation budget guide covering all three phases: estimating costs before you go, tracking spending during the trip, and analyzing your budget after.",
+  },
+  {
     slug: "split-expenses-with-friends",
     title: "How to Split Trip Expenses Fairly With Friends",
     date: "January 15, 2026",

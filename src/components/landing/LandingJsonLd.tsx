@@ -36,6 +36,38 @@ const faqSchema = {
         text: "Yes. From the trip settings screen you can generate a PDF expense report with one click. You can also share a read-only view of your trip via a link or QR code — anyone with the link can view the budget without needing an account.",
       },
     },
+    {
+      "@type": "Question",
+      name: "Is there a free trip planner that doesn't require an account?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes — Budget Rover is a completely free trip planner that requires no account, no email, and no subscription. You can create a trip, set a budget, and start logging expenses in under two minutes. All data is stored on your device.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How do I plan a vacation budget?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Start by estimating fixed costs (flights, accommodation) then add daily variable costs (food, transport, activities). Add a 10–20% buffer for unexpected expenses. Budget Rover lets you set this budget before you travel, then log actuals as you go so you always know if you're on track.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Can Budget Rover be used as a group trip planner?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. Budget Rover is designed for group travel. Add all travelers to a trip, log who paid for each shared expense, and the app automatically calculates who owes whom using a debt-minimization algorithm — giving every person in the group a clear settlement summary with the minimum number of payments.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What makes Budget Rover different from other travel planner apps?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Most travel planner apps require an account and store your data in the cloud. Budget Rover stores everything on your device — no account, no cloud, no data sharing. It also works fully offline as a Progressive Web App, making it usable on planes, in remote areas, or anywhere without internet.",
+      },
+    },
   ],
 };
 

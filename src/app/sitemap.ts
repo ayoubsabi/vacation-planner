@@ -60,6 +60,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${siteUrl}/trip-planner`,
+      lastModified: new Date("2026-03-15"),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/vacation-planner`,
+      lastModified: new Date("2026-03-15"),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/blog/trip-planner-guide`,
+      lastModified: new Date("2026-03-15"),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${siteUrl}/blog/group-travel-budget-planner`,
+      lastModified: new Date("2026-03-15"),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${siteUrl}/blog/vacation-budget-planner-guide`,
+      lastModified: new Date("2026-03-15"),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${siteUrl}/templates`,
       lastModified: new Date("2026-01-15"),
       changeFrequency: "monthly",

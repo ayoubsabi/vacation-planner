@@ -17,9 +17,15 @@ export function PublicFooter() {
             <span>·</span>
             <span>No account needed</span>
           </div>
-          <nav className="flex items-center gap-5 text-xs text-[var(--text-secondary)]">
+          <nav className="flex flex-wrap items-center gap-5 text-xs text-[var(--text-secondary)]">
             <Link href="/trip/new" className="hover:text-[var(--text-primary)] transition-colors">
               New Trip
+            </Link>
+            <Link href="/trip-planner" className="hover:text-[var(--text-primary)] transition-colors">
+              Trip Planner
+            </Link>
+            <Link href="/vacation-planner" className="hover:text-[var(--text-primary)] transition-colors">
+              Vacation Planner
             </Link>
             <Link href="/templates" className="hover:text-[var(--text-primary)] transition-colors">
               Templates

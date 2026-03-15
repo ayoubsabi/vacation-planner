@@ -61,6 +61,59 @@ const faqs = [
       </>
     ),
   },
+  {
+    question: "Is there a free trip planner that doesn't require an account?",
+    answer: (
+      <>
+        Yes — Budget Rover is a completely <strong className="text-[var(--text-primary)]">free trip planner</strong>{" "}
+        that requires no account, no email, and no subscription. You can create a trip, set a
+        budget, and start logging expenses in under two minutes.{" "}
+        <Link href="/trip/new" className="text-[var(--primary)] hover:underline font-medium">
+          Try it now →
+        </Link>
+      </>
+    ),
+  },
+  {
+    question: "How do I plan a vacation budget?",
+    answer: (
+      <>
+        Start by estimating <strong className="text-[var(--text-primary)]">fixed costs</strong>{" "}
+        (flights, accommodation), then add daily variable costs (food, transport, activities). Add a
+        10–20% buffer for the unexpected. Budget Rover lets you set this budget before you travel,
+        then log actuals as you go so you always know if you&apos;re on track.{" "}
+        <Link href="/blog/how-to-budget-a-vacation" className="text-[var(--primary)] hover:underline font-medium">
+          Full budgeting guide →
+        </Link>
+      </>
+    ),
+  },
+  {
+    question: "Can Budget Rover be used as a group trip planner?",
+    answer: (
+      <>
+        Yes. Budget Rover is built for <strong className="text-[var(--text-primary)]">group travel</strong>.
+        Add all travelers, log who paid for each shared expense, and the app automatically calculates
+        who owes whom using a debt-minimization algorithm — giving the whole group a clear settlement
+        summary with the fewest possible payments. See an example in the{" "}
+        <Link href="/templates/tokyo-group" className="text-[var(--primary)] hover:underline font-medium">
+          Tokyo group trip template →
+        </Link>
+      </>
+    ),
+  },
+  {
+    question: "What makes Budget Rover different from other travel planner apps?",
+    answer: (
+      <>
+        Most travel planner apps require a cloud account and send your data to a server. Budget
+        Rover stores everything <strong className="text-[var(--text-primary)]">on your device</strong> —
+        no account, no cloud, no data sharing. It works fully offline as a{" "}
+        <strong className="text-[var(--text-primary)]">Progressive Web App</strong>, so it&apos;s
+        usable on planes, in remote areas, or anywhere without internet — completely free.
+      </>
+    ),
+  },
 ];
 
 export function FAQ() {

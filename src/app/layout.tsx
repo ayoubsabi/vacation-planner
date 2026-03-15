@@ -21,8 +21,8 @@ const jsonLd = {
       name: APP_NAME,
       url: siteUrl,
       description:
-        "Plan your trip budget, split expenses with friends, and track spending. No login required. Works offline.",
-      applicationCategory: "FinanceApplication",
+        "Free vacation planner and trip budget tracker. Plan travel budgets, split group expenses, and track spending — no account required, works offline.",
+      applicationCategory: ["TravelApplication", "FinanceApplication"],
       operatingSystem: "All",
       browserRequirements: "Requires JavaScript. Works in all modern browsers.",
       offers: {
@@ -32,10 +32,13 @@ const jsonLd = {
       },
       featureList: [
         "Offline support",
-        "Expense splitting",
-        "PDF export",
-        "QR code sharing",
+        "Expense splitting and debt minimization",
+        "PDF expense report export",
+        "QR code trip sharing",
         "No account required",
+        "Vacation budget planning",
+        "Group travel expense tracker",
+        "Free trip planner",
       ],
       screenshot: {
         "@type": "ImageObject",
@@ -62,7 +65,7 @@ const jsonLd = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${APP_NAME} — Vacation Budget Planner`,
+    default: `${APP_NAME} — Free Vacation & Trip Planner`,
     template: `%s — ${APP_NAME}`,
   },
   description:
@@ -92,7 +95,7 @@ export const metadata: Metadata = {
     other: [{ rel: "mask-icon", url: "/icons/icon.svg", color: "#FF6B35" }],
   },
   openGraph: {
-    title: `${APP_NAME} — Vacation Budget Planner`,
+    title: `${APP_NAME} — Free Vacation & Trip Planner`,
     description:
       "Track vacation spending, split expenses with friends, export PDF reports. 100% free, works offline, no account needed.",
     url: siteUrl,
@@ -110,7 +113,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${APP_NAME} — Vacation Budget Planner`,
+    title: `${APP_NAME} — Free Vacation & Trip Planner`,
     description:
       "Track vacation spending, split expenses, export PDF reports. Free, offline, no login required.",
     images: ["/og"],
