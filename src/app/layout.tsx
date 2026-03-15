@@ -156,6 +156,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )}
         <link rel="preconnect" href="https://va.vercel-scripts.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://va.vercel-scripts.com" />
+        {/* Travelpayouts ownership verification */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var s=document.createElement("script");s.async=1;s.src='https://emrld.ltd/NTA4MDM3.js?t=508037';document.head.appendChild(s);})();`,
+          }}
+        />
       </head>
       <body className="antialiased bg-[var(--background)] text-[var(--text-primary)]">
         {process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID && (
