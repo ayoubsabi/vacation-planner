@@ -5,7 +5,7 @@ export function PublicFooter() {
   return (
     <footer className="border-t border-[var(--border)] py-6 px-6">
       <div className="max-w-5xl mx-auto">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4">
+        <div className="flex flex-col items-center gap-4 mb-4">
           <div className="flex items-center gap-2 text-xs text-[var(--text-secondary)]">
             <Link href="/" className="font-bold text-[var(--primary)] text-sm">
               {APP_NAME}
@@ -17,29 +17,29 @@ export function PublicFooter() {
             <span>·</span>
             <span>No account needed</span>
           </div>
-          <nav className="flex flex-wrap items-center gap-5 text-xs text-[var(--text-secondary)]">
-            <Link href="/trip/new" className="hover:text-[var(--text-primary)] transition-colors">
+          <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-[var(--text-secondary)]">
+            <Link href="/trip/new" className="py-1 hover:text-[var(--text-primary)] transition-colors">
               New Trip
             </Link>
-            <Link href="/trip-planner" className="hover:text-[var(--text-primary)] transition-colors">
+            <Link href="/trip-planner" className="py-1 hover:text-[var(--text-primary)] transition-colors">
               Trip Planner
             </Link>
-            <Link href="/vacation-planner" className="hover:text-[var(--text-primary)] transition-colors">
+            <Link href="/vacation-planner" className="py-1 hover:text-[var(--text-primary)] transition-colors">
               Vacation Planner
             </Link>
-            <Link href="/templates" className="hover:text-[var(--text-primary)] transition-colors">
+            <Link href="/templates" className="py-1 hover:text-[var(--text-primary)] transition-colors">
               Templates
             </Link>
-            <Link href="/blog" className="hover:text-[var(--text-primary)] transition-colors">
+            <Link href="/blog" className="py-1 hover:text-[var(--text-primary)] transition-colors">
               Blog
             </Link>
-            <Link href="/about" className="hover:text-[var(--text-primary)] transition-colors">
+            <Link href="/about" className="py-1 hover:text-[var(--text-primary)] transition-colors">
               About
             </Link>
-            <Link href="/privacy" className="hover:text-[var(--text-primary)] transition-colors">
+            <Link href="/privacy" className="py-1 hover:text-[var(--text-primary)] transition-colors">
               Privacy
             </Link>
-            <Link href="/tos" className="hover:text-[var(--text-primary)] transition-colors">
+            <Link href="/tos" className="py-1 hover:text-[var(--text-primary)] transition-colors">
               Terms
             </Link>
           </nav>
