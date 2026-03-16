@@ -7,6 +7,23 @@ const PRICE_MAP: Record<string, 1 | 2 | 3 | 4> = {
   "$": 1, "$$": 2, "$$$": 3, "$$$$": 4,
 };
 
+// Maps trip interests to Yelp API category aliases
+const INTEREST_CATEGORIES: Record<string, string> = {
+  Food:      "restaurants",
+  Nightlife: "nightlife",
+  Shopping:  "shopping",
+  Culture:   "arts,museums",
+  History:   "landmarks,museums",
+  Art:       "arts",
+  Adventure: "active",
+  Nature:    "parks",
+  Beach:     "beaches",
+  Sports:    "active",
+};
+
+const STAYS_CATEGORY = "hotels";
+const DEFAULT_CATEGORIES = "restaurants,cafes,bars,hotels,arts,shopping,museums,landmarks";
+
 interface YelpCategory {
   alias: string;
   title: string;
@@ -35,10 +52,48 @@ function mapToFilter(categories: YelpCategory[]): PlaceFilter {
   return "explore";
 }
 
+function mapBusiness(b: YelpBusiness): PlaceResult {
+  return {
+    id: b.id,
+    name: b.name,
+    address: [b.location.address1, b.location.city].filter(Boolean).join(", "),
+    rating: b.rating,
+    priceLevel: b.price ? PRICE_MAP[b.price] : undefined,
+    isOpenNow: b.is_closed !== undefined ? !b.is_closed : undefined,
+    photoUrl: b.image_url || undefined,
+    lat: b.coordinates.latitude,
+    lng: b.coordinates.longitude,
+    filter: mapToFilter(b.categories),
+  };
+}
+
+async function fetchYelpCategory(
+  lat: string,
+  lng: string,
+  categories: string,
+  apiKey: string
+): Promise<PlaceResult[]> {
+  const url = new URL(YELP_SEARCH_URL);
+  url.searchParams.set("latitude", lat);
+  url.searchParams.set("longitude", lng);
+  url.searchParams.set("categories", categories);
+  url.searchParams.set("limit", "50");
+  url.searchParams.set("radius", "10000");
+  url.searchParams.set("sort_by", "rating");
+
+  const res = await fetch(url.toString(), {
+    headers: { Authorization: `Bearer ${apiKey}`, Accept: "application/json" },
+  });
+  if (!res.ok) return [];
+  const data = await res.json();
+  return (data.businesses ?? []).map(mapBusiness);
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const lat = searchParams.get("lat");
-  const lng = searchParams.get("lng");
+  const lat       = searchParams.get("lat");
+  const lng       = searchParams.get("lng");
+  const interests = searchParams.get("interests"); // e.g. "Food,Culture,Beach"
 
   if (!lat || !lng || isNaN(Number(lat)) || isNaN(Number(lng))) {
     return NextResponse.json(
@@ -56,45 +111,46 @@ export async function GET(request: Request) {
   }
 
   try {
-    const url = new URL(YELP_SEARCH_URL);
-    url.searchParams.set("latitude", lat);
-    url.searchParams.set("longitude", lng);
-    url.searchParams.set("categories", "restaurants,cafes,bars,hotels,arts,shopping,museums,landmarks");
-    url.searchParams.set("limit", "50");
-    url.searchParams.set("radius", "10000");
-    url.searchParams.set("sort_by", "rating");
+    // Interest-based parallel fetching
+    if (interests && interests.trim().length > 0) {
+      const interestList = interests.split(",").map((i) => i.trim());
 
-    const res = await fetch(url.toString(), {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        Accept: "application/json",
-      },
-    });
+      // Resolve unique Yelp category strings (deduped — e.g. Culture + History both → arts,museums)
+      const categorySet = new Set<string>();
+      for (const interest of interestList) {
+        const cat = INTEREST_CATEGORIES[interest];
+        if (cat) categorySet.add(cat);
+      }
+      categorySet.add(STAYS_CATEGORY); // Always include hotels
 
-    if (!res.ok) {
-      const text = await res.text();
+      // Parallel fetch — one Yelp request per unique category group
+      const fetches = Array.from(categorySet).map((cat) =>
+        fetchYelpCategory(lat, lng, cat, apiKey)
+      );
+      const results = await Promise.allSettled(fetches);
+
+      // Flatten + deduplicate by business id
+      const seen = new Set<string>();
+      const places: PlaceResult[] = [];
+      for (const r of results) {
+        if (r.status === "fulfilled") {
+          for (const p of r.value) {
+            if (!seen.has(p.id)) {
+              seen.add(p.id);
+              places.push(p);
+            }
+          }
+        }
+      }
+
       return NextResponse.json(
-        { error: "PLACES_API_ERROR", message: text },
-        { status: 502 }
+        { places },
+        { headers: { "Cache-Control": "public, max-age=3600" } }
       );
     }
 
-    const data = await res.json();
-    const businesses: YelpBusiness[] = data.businesses ?? [];
-
-    const places: PlaceResult[] = businesses.map((b) => ({
-      id: b.id,
-      name: b.name,
-      address: [b.location.address1, b.location.city].filter(Boolean).join(", "),
-      rating: b.rating,
-      priceLevel: b.price ? PRICE_MAP[b.price] : undefined,
-      isOpenNow: b.is_closed !== undefined ? !b.is_closed : undefined,
-      photoUrl: b.image_url || undefined,
-      lat: b.coordinates.latitude,
-      lng: b.coordinates.longitude,
-      filter: mapToFilter(b.categories),
-    }));
-
+    // No interests → original single broad request
+    const places = await fetchYelpCategory(lat, lng, DEFAULT_CATEGORIES, apiKey);
     return NextResponse.json(
       { places },
       { headers: { "Cache-Control": "public, max-age=3600" } }

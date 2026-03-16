@@ -1,18 +1,18 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, BarChart2, GitFork, MapPin, Settings } from "lucide-react";
+import { Home, BarChart2, GitFork, CalendarDays, Settings } from "lucide-react";
 
 interface BottomNavigationProps {
   tripId: string;
 }
 
 const tabs = [
-  { label: "Home",     icon: Home,     href: ""        },
-  { label: "Charts",   icon: BarChart2, href: "/charts" },
-  { label: "Split",    icon: GitFork,  href: "/split"  },
-  { label: "Places",   icon: MapPin,   href: "/places" },
-  { label: "Settings", icon: Settings, href: "/settings" },
+  { label: "Home",     icon: Home,        href: ""          },
+  { label: "Charts",   icon: BarChart2,   href: "/charts"   },
+  { label: "Split",    icon: GitFork,     href: "/split"    },
+  { label: "Plan",     icon: CalendarDays, href: "/plan"    },
+  { label: "Settings", icon: Settings,    href: "/settings" },
 ];
 
 export function BottomNavigation({ tripId }: BottomNavigationProps) {

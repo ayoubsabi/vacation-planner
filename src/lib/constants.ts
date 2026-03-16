@@ -1,4 +1,4 @@
-import { ExpenseCategory } from "./types";
+import { ExpenseCategory, TripInterest } from "./types";
 
 export const EXPENSE_CATEGORIES: { value: ExpenseCategory; label: string; emoji: string }[] = [
   { value: "accommodation", label: "Accommodation", emoji: "🏨" },
@@ -63,6 +63,19 @@ export const CATEGORY_COLORS: Record<ExpenseCategory, string> = {
   entertainment: "#FB7185",
   other: "#94A3B8",
 };
+
+export const TRIP_INTERESTS: { value: TripInterest; emoji: string }[] = [
+  { value: "Culture", emoji: "🏛️" },
+  { value: "Food", emoji: "🍜" },
+  { value: "Adventure", emoji: "🧗" },
+  { value: "Nature", emoji: "🌿" },
+  { value: "Shopping", emoji: "🛍️" },
+  { value: "Nightlife", emoji: "🎶" },
+  { value: "Beach", emoji: "🏖️" },
+  { value: "History", emoji: "📜" },
+  { value: "Art", emoji: "🎨" },
+  { value: "Sports", emoji: "⚽" },
+];
 
 export const APP_NAME = "Budget Rover";
 export const APP_VERSION = "1.0.0";

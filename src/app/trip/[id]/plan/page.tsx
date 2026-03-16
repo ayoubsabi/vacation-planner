@@ -1,7 +1,7 @@
 "use client";
 import { use } from "react";
 import { useTripStore } from "@/store/tripStore";
-import { Places } from "@/components/trip/Places";
+import { TripPlanView } from "@/components/trip/TripPlanView";
 import { Header } from "@/components/common/Header";
 import Link from "next/link";
 import { Button } from "@/components/common/Button";
@@ -10,7 +10,7 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-export default function PlacesPage({ params }: PageProps) {
+export default function PlanPage({ params }: PageProps) {
   const { id } = use(params);
   const trip = useTripStore((s) => s.getTrip(id));
 
@@ -25,8 +25,8 @@ export default function PlacesPage({ params }: PageProps) {
 
   return (
     <>
-      <Header title="Places & Activities" backHref={`/trip/${id}`} />
-      <Places trip={trip} />
+      <Header title="Plan & Places" backHref={`/trip/${id}`} />
+      <TripPlanView trip={trip} />
     </>
   );
 }

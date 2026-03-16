@@ -6,7 +6,7 @@ import { LocationAutocomplete } from "@/components/common/LocationAutocomplete";
 import { Button } from "@/components/common/Button";
 import { Select } from "@/components/common/Select";
 import { useTripStore } from "@/store/tripStore";
-import { DESTINATION_SUGGESTIONS, CURRENCIES } from "@/lib/constants";
+import { DESTINATION_SUGGESTIONS, CURRENCIES, TRIP_INTERESTS } from "@/lib/constants";
 import {
   getTripDuration,
   getDailyBudget,
@@ -14,10 +14,10 @@ import {
   isoDateToday,
   generateId,
 } from "@/lib/utils";
-import { Traveler } from "@/lib/types";
-import { Plus, Trash2, MapPin, DollarSign, Users } from "lucide-react";
+import { Traveler, TripInterest } from "@/lib/types";
+import { Plus, Trash2, MapPin, DollarSign, Users, Sparkles } from "lucide-react";
 
-const STEPS = ["Destination", "Budget & Dates", "Travelers"];
+const STEPS = ["Destination", "Budget & Dates", "Interests", "Travelers"];
 
 export function TripWizard() {
   const router = useRouter();
@@ -42,6 +42,15 @@ export function TripWizard() {
     return d.toISOString().split("T")[0];
   });
 
+  // Step 2.5 — Interests
+  const [interests, setInterests] = useState<TripInterest[]>([]);
+
+  function toggleInterest(interest: TripInterest) {
+    setInterests((prev) =>
+      prev.includes(interest) ? prev.filter((i) => i !== interest) : [...prev, interest]
+    );
+  }
+
   // Step 3
   const [travelers, setTravelers] = useState<Traveler[]>([
     { id: generateId(), name: "", email: "" },
@@ -64,7 +73,7 @@ export function TripWizard() {
       if (!budget || parseFloat(budget) <= 0) errs.budget = "Enter a valid budget";
       if (endDate <= startDate) errs.endDate = "End date must be after start date";
     }
-    if (step === 2) {
+    if (step === 3) {
       if (travelers.some((t) => !t.name.trim())) errs.travelers = "All travelers need a name";
     }
     setErrors(errs);
@@ -109,6 +118,7 @@ export function TripWizard() {
         budget: parseFloat(budget),
         baseCurrency: currency,
         travelers: travelers.filter((t) => t.name.trim()),
+        interests,
       });
       router.push(`/trip/${trip.id}`);
     } catch {
@@ -271,6 +281,45 @@ export function TripWizard() {
             <div className="flex flex-col gap-5">
               <div>
                 <div className="flex items-center gap-2 text-[var(--primary)] mb-1">
+                  <Sparkles size={20} />
+                  <h2 className="text-xl font-bold">What interests you?</h2>
+                </div>
+                <p className="text-sm text-[var(--text-secondary)]">
+                  Pick any that apply — we&apos;ll personalize your activity suggestions.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {TRIP_INTERESTS.map(({ value, emoji }) => {
+                  const isSelected = interests.includes(value);
+                  return (
+                    <button
+                      key={value}
+                      type="button"
+                      onClick={() => toggleInterest(value)}
+                      className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-150
+                        ${isSelected
+                          ? "bg-[var(--primary)] text-white shadow-sm scale-[1.02]"
+                          : "bg-white border border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--primary)] hover:text-[var(--primary)]"
+                        }`}
+                    >
+                      <span>{emoji}</span>
+                      {value}
+                    </button>
+                  );
+                })}
+              </div>
+              <p className="text-xs text-[var(--text-secondary)]">
+                {interests.length === 0
+                  ? "No interests selected — that's fine, you can add them later."
+                  : `${interests.length} selected`}
+              </p>
+            </div>
+          )}
+
+          {step === 3 && (
+            <div className="flex flex-col gap-5">
+              <div>
+                <div className="flex items-center gap-2 text-[var(--primary)] mb-1">
                   <Users size={20} />
                   <h2 className="text-xl font-bold">Who&apos;s coming?</h2>
                 </div>
@@ -338,6 +387,12 @@ export function TripWizard() {
                   <span>Travelers</span>
                   <span className="font-medium text-[var(--text-primary)]">{travelers.filter((t) => t.name.trim()).length}</span>
                 </div>
+                {interests.length > 0 && (
+                  <div className="flex justify-between text-[var(--text-secondary)]">
+                    <span>Interests</span>
+                    <span className="font-medium text-[var(--text-primary)]">{interests.join(", ")}</span>
+                  </div>
+                )}
               </div>
             </div>
           )}

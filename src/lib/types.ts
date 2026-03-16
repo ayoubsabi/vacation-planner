@@ -1,3 +1,29 @@
+export type TripInterest =
+  | "Culture"
+  | "Food"
+  | "Adventure"
+  | "Nature"
+  | "Shopping"
+  | "Nightlife"
+  | "Beach"
+  | "History"
+  | "Art"
+  | "Sports";
+
+export interface AISuggestions {
+  content: string;
+  generatedAt: string;
+  interests: TripInterest[];
+  groundedWithPlaces?: boolean;
+}
+
+export interface TripPlan {
+  content: string;
+  generatedAt: string;
+  interests: TripInterest[];
+  groundedWithPlaces?: boolean;
+}
+
 export type ExpenseCategory =
   | "accommodation"
   | "food"
@@ -40,6 +66,9 @@ export interface Trip {
   travelers: Traveler[];
   expenses: Expense[];
   places?: import("@/lib/places").PlaceResult[];
+  interests?: TripInterest[];
+  aiSuggestions?: AISuggestions;
+  tripPlan?: TripPlan;
   createdAt: string;
   updatedAt: string;
   archived?: boolean;

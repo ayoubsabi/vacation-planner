@@ -7,10 +7,11 @@ import { Header } from "@/components/common/Header";
 import { Card } from "@/components/common/Card";
 import { Button } from "@/components/common/Button";
 import { Select } from "@/components/common/Select";
-import { CURRENCIES } from "@/lib/constants";
+import { CURRENCIES, TRIP_INTERESTS } from "@/lib/constants";
+import { TripInterest } from "@/lib/types";
 import { exportAllData, importAllData, clearAllData } from "@/lib/db";
 import { duplicateTrip } from "@/lib/utils";
-import { Trash2, Archive, Copy, Download, Upload, AlertTriangle, Smartphone, ChevronDown, ChevronUp } from "lucide-react";
+import { Trash2, Archive, Copy, Download, Upload, AlertTriangle, Smartphone, ChevronDown, ChevronUp, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { APP_VERSION } from "@/lib/constants";
 import { IOSInstallGuide } from "@/components/common/InstallPrompt";
@@ -161,6 +162,45 @@ export default function SettingsPage({ params }: PageProps) {
               {showIOSGuide ? <ChevronUp size={16} className="text-[var(--text-secondary)]" /> : <ChevronDown size={16} className="text-[var(--text-secondary)]" />}
             </button>
             {showIOSGuide && <IOSInstallGuide />}
+          </Card>
+        )}
+
+        {/* Trip Interests */}
+        {trip && (
+          <Card>
+            <div className="flex items-center gap-2 mb-3">
+              <Sparkles size={16} className="text-[var(--primary)]" />
+              <h3 className="font-semibold text-[var(--text-primary)]">Interests</h3>
+            </div>
+            <p className="text-xs text-[var(--text-secondary)] mb-3">
+              Used to personalize AI activity suggestions on the Places tab.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {TRIP_INTERESTS.map(({ value, emoji }) => {
+                const isSelected = (trip.interests ?? []).includes(value);
+                return (
+                  <button
+                    key={value}
+                    type="button"
+                    onClick={async () => {
+                      const current = trip.interests ?? [];
+                      const updated: TripInterest[] = isSelected
+                        ? current.filter((i) => i !== value)
+                        : [...current, value];
+                      await updateTrip(id, { interests: updated, aiSuggestions: undefined, tripPlan: undefined });
+                    }}
+                    className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-150
+                      ${isSelected
+                        ? "bg-[var(--primary)] text-white shadow-sm"
+                        : "bg-white border border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--primary)] hover:text-[var(--primary)]"
+                      }`}
+                  >
+                    <span>{emoji}</span>
+                    {value}
+                  </button>
+                );
+              })}
+            </div>
           </Card>
         )}
 
