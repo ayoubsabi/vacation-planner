@@ -10,6 +10,11 @@ export type TripInterest =
   | "Art"
   | "Sports";
 
+export interface DestinationInfo {
+  content: string;
+  generatedAt: string;
+}
+
 export interface AISuggestions {
   content: string;
   generatedAt: string;
@@ -69,6 +74,7 @@ export interface Trip {
   interests?: TripInterest[];
   aiSuggestions?: AISuggestions;
   tripPlan?: TripPlan;
+  destinationInfo?: DestinationInfo;
   createdAt: string;
   updatedAt: string;
   archived?: boolean;

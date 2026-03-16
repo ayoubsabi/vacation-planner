@@ -14,6 +14,7 @@ import { formatCurrency, formatDate } from "@/lib/utils";
 
 interface TripPlanViewProps {
   trip: Trip;
+  autoGenerate?: boolean;
 }
 
 function arraysEqual(a: TripInterest[], b: TripInterest[]) {
@@ -118,9 +119,14 @@ function parseStreamedText(text: string): DayCard[] {
       current.tip = line.replace("**Tip:**", "").trim();
     } else if (line.startsWith("**Day Transport:**")) {
       current.transport = line.replace("**Day Transport:**", "").trim();
+    } else if (line.startsWith("**Total Budget:**") || line.startsWith("**Total:**")) {
+      // skip — already displayed in the estimated total footer
     } else if (line) {
-      // Strip any stray [id:...] markers before adding to extra
-      const cleaned = line.replace(/\[id:[^\]]+\]\s*/g, "").trim();
+      // Strip stray [id:...] markers and markdown bold markers before adding to extra
+      const cleaned = line
+        .replace(/\[id:[^\]]+\]\s*/g, "")
+        .replace(/\*\*([^*]+)\*\*/g, "$1")
+        .trim();
       if (cleaned) current.extra.push(cleaned);
     }
   }
@@ -519,7 +525,7 @@ function DayCardUI({
 
 // ── Main component ────────────────────────────────────────────────────────────
 
-export function TripPlanView({ trip }: TripPlanViewProps) {
+export function TripPlanView({ trip, autoGenerate }: TripPlanViewProps) {
   const updateTrip = useTripStore((s) => s.updateTrip);
 
   const [streamedText, setStreamedText] = useState("");
@@ -540,7 +546,11 @@ export function TripPlanView({ trip }: TripPlanViewProps) {
       const cacheIsStale = placesAvailable && !trip.tripPlan.groundedWithPlaces;
       if (interestsMatch && !cacheIsStale) {
         setStreamedText(trip.tripPlan.content);
+        return;
       }
+    }
+    if (autoGenerate) {
+      fetchPlan();
     }
   }, [trip.id]); // eslint-disable-line react-hooks/exhaustive-deps
 

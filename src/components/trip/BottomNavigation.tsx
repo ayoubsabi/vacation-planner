@@ -11,7 +11,7 @@ const tabs = [
   { label: "Home",     icon: Home,        href: ""          },
   { label: "Charts",   icon: BarChart2,   href: "/charts"   },
   { label: "Split",    icon: GitFork,     href: "/split"    },
-  { label: "Plan",     icon: CalendarDays, href: "/plan"    },
+  { label: "Activities", icon: CalendarDays, href: "/activities" },
   { label: "Settings", icon: Settings,    href: "/settings" },
 ];
 
