@@ -12,7 +12,7 @@ interface PageProps {
 
 export default function PlanPage({ params }: PageProps) {
   const { id } = use(params);
-  const trip = useTripStore((s) => s.getTrip(id));
+  const trip = useTripStore((s) => s.trips.find((t) => t.id === id));
 
   if (!trip) {
     return (

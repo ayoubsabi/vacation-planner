@@ -119,7 +119,7 @@ ${p.placesBlock}
 
 Format EACH day EXACTLY like this (no deviations):
 
-## Day N — {date} — {Theme}
+## Day N — {date} — {Area or Neighbourhood Focus}
 **Morning:** [id:EXACT_ID_FROM_LIST] Place Name — [what to do there in one sentence] — ~X ${p.currency}
 **Afternoon:** [id:EXACT_ID_FROM_LIST] Place Name — [what to do there in one sentence] — ~X ${p.currency}
 **Evening:** [id:EXACT_ID_FROM_LIST] Place Name — [what to do there in one sentence] — ~X ${p.currency}
@@ -129,8 +129,10 @@ Format EACH day EXACTLY like this (no deviations):
 
 Rules:
 - Use ONLY the [id:xxx] values from the list above — copy them exactly as written
-- Use a different theme for each day (e.g., Cultural Exploration, Food & Markets, Adventure Day)
-- Pick places that match the day's theme and the traveler's interests
+- Each day's subtitle should name a neighbourhood, district, or area — NOT a single interest category
+- Every day MUST mix different types of activities: e.g. a morning attraction, afternoon leisure (café/shop/nature), evening dining or nightlife
+- Nightlife and bars are EVENING-ONLY activities — never place them in the morning or afternoon slot
+- Spread the traveler's interests across ALL days rather than dedicating a whole day to one interest
 - Keep each day's total within ${p.dailyBudget} ${p.currency}
 - Do not repeat the same place on multiple days
 - Alternatives should be different places from the list not already used that day
@@ -158,7 +160,7 @@ Interests: ${p.interestsList}
 
 Format EACH day EXACTLY like this (no deviations):
 
-## Day N — {date} — {Theme}
+## Day N — {date} — {Area or Neighbourhood Focus}
 **Morning:** Place or Activity Name — [one sentence description] — ~X ${p.currency}
 **Afternoon:** Place or Activity Name — [one sentence description] — ~X ${p.currency}
 **Evening:** Place or Activity Name — [one sentence description] — ~X ${p.currency}
@@ -167,8 +169,10 @@ Format EACH day EXACTLY like this (no deviations):
 **Tip:** [one practical tip specific to the day's activities]
 
 Rules:
-- Use a different theme for each day (e.g., Cultural Exploration, Food & Markets, Adventure Day)
-- Match activities to the traveler's interests
+- Each day's subtitle should name a neighbourhood, district, or area — NOT a single interest category
+- Every day MUST mix different types of activities: e.g. a morning attraction, afternoon leisure (café/shop/nature), evening dining or nightlife
+- Nightlife and bars are EVENING-ONLY activities — never place them in the morning or afternoon slot
+- Spread the traveler's interests across ALL days rather than dedicating a whole day to one interest
 - Keep each day's total within ${p.dailyBudget} ${p.currency}
 - Be specific to ${p.destination} — avoid generic suggestions
 - One sentence per activity slot`;

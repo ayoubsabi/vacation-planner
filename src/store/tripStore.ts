@@ -135,4 +135,5 @@ export const useTripStore = create<TripStore>((set, get) => ({
     const updated = trips.find((t) => t.id === tripId);
     if (updated) await saveTrip(updated);
   },
+
 }));

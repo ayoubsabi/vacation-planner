@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import {
   CalendarDays, RefreshCw, AlertTriangle, Info, MapPin, Sun, Cloud, Moon,
   Lightbulb, Wallet, Star, Navigation, Sparkles, Search, ChevronDown,
+  Car,
 } from "lucide-react";
 import { Trip, TripInterest } from "@/lib/types";
 import type { PlaceResult } from "@/lib/places";
@@ -36,11 +37,18 @@ interface DayCard {
   morning?: Slot;
   afternoon?: Slot;
   evening?: Slot;
+  transport?: string;
   alternatives: string[];
   budget?: string;
   tip?: string;
   extra: string[];
 }
+
+const SLOT_TIMES: Record<"Morning" | "Afternoon" | "Evening", string> = {
+  Morning: "9:00 AM",
+  Afternoon: "1:00 PM",
+  Evening: "7:00 PM",
+};
 
 // ── Parser ────────────────────────────────────────────────────────────────────
 
@@ -108,8 +116,12 @@ function parseStreamedText(text: string): DayCard[] {
       current.budget = line.replace("**Day Budget:**", "").trim();
     } else if (line.startsWith("**Tip:**")) {
       current.tip = line.replace("**Tip:**", "").trim();
+    } else if (line.startsWith("**Day Transport:**")) {
+      current.transport = line.replace("**Day Transport:**", "").trim();
     } else if (line) {
-      current.extra.push(line);
+      // Strip any stray [id:...] markers before adding to extra
+      const cleaned = line.replace(/\[id:[^\]]+\]\s*/g, "").trim();
+      if (cleaned) current.extra.push(cleaned);
     }
   }
 
@@ -269,10 +281,23 @@ function SlotRow({
 
       {/* Content */}
       <div className={`flex-1 min-w-0 ${isLast ? "" : "pb-4"}`}>
-        <span className={`inline-flex items-center text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full mb-2 ${styles.pill}`}>
-          {label}
-        </span>
-        <p className="text-sm text-[var(--text-primary)] leading-relaxed">{slot.text}</p>
+        <div className="flex items-center gap-2 mb-2">
+          <span className={`inline-flex items-center text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full ${styles.pill}`}>
+            {label}
+          </span>
+          <span className="text-[10px] font-mono text-[var(--text-secondary)] bg-[var(--bg-secondary)] border border-[var(--border)] px-1.5 py-0.5 rounded-md">
+            {SLOT_TIMES[label]}
+          </span>
+        </div>
+        {!place && slot.placeName && slot.placeName !== slot.text && (
+          <p className="text-sm font-semibold text-[var(--text-primary)] mb-0.5 flex items-center gap-1">
+            <MapPin size={11} className="text-[var(--primary)] shrink-0" />
+            {slot.placeName}
+          </p>
+        )}
+        <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+          {slot.text.replace(/\[id:[^\]]+\]\s*/g, "").trim()}
+        </p>
         {slot.cost && (
           <span className="mt-1.5 inline-flex items-center text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full">
             ~{slot.cost}
@@ -414,7 +439,7 @@ function DayCardUI({
       {/* Body */}
       {!collapsed && (
         <div className="px-4 pt-1 pb-4 border-t border-[var(--border)]">
-          <div className="pt-3 space-y-0">
+<div className="pt-3 space-y-0">
             {day.morning && (
               <SlotRow
                 icon={Sun}
@@ -474,6 +499,14 @@ function DayCardUI({
             </div>
           )}
 
+          {/* Day Transport */}
+          {day.transport && (
+            <div className="mt-2 flex items-start gap-2 bg-slate-50 border border-slate-100 rounded-xl px-3 py-2">
+              <Car size={12} className="text-slate-400 shrink-0 mt-0.5" />
+              <span className="text-xs text-[var(--text-secondary)] leading-relaxed">{day.transport}</span>
+            </div>
+          )}
+
           {/* Streaming cursor */}
           {isLast && isStreaming && (
             <span className="inline-block w-1.5 h-3.5 bg-[var(--primary)] animate-pulse rounded-sm mt-2 ml-1" />
@@ -488,6 +521,7 @@ function DayCardUI({
 
 export function TripPlanView({ trip }: TripPlanViewProps) {
   const updateTrip = useTripStore((s) => s.updateTrip);
+
   const [streamedText, setStreamedText] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -696,16 +730,18 @@ export function TripPlanView({ trip }: TripPlanViewProps) {
             )}
           </div>
         </div>
-        {streamedText && !isStreaming && (
-          <button
-            onClick={fetchPlan}
-            className="flex items-center gap-1.5 text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--primary)] bg-[var(--bg-secondary)] hover:bg-orange-50 border border-[var(--border)] px-3 py-1.5 rounded-xl transition-colors"
-            type="button"
-          >
-            <RefreshCw size={12} />
-            Regenerate
-          </button>
-        )}
+        <div className="flex items-center gap-2">
+          {streamedText && !isStreaming && (
+            <button
+              onClick={fetchPlan}
+              className="flex items-center gap-1.5 text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--primary)] bg-[var(--bg-secondary)] hover:bg-orange-50 border border-[var(--border)] px-3 py-1.5 rounded-xl transition-colors"
+              type="button"
+            >
+              <RefreshCw size={12} />
+              Regenerate
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Places fetching skeleton */}
@@ -883,6 +919,8 @@ export function TripPlanView({ trip }: TripPlanViewProps) {
           </div>
         </div>
       )}
+
+
     </div>
   );
 }
